@@ -72,12 +72,12 @@ install_dkms_package() {
 
     record_install "package" "${pkg_name}" ""
     
-    # 5. Check DKMS kernel mismatch
+    # 5. Ensure DKMS module is built and installed for current running kernel
     local current_kernel
     current_kernel="$(uname -r)"
-    if dkms status "${pkg_name}" | grep -q "installed" && ! dkms status "${pkg_name}" | grep -q "${current_kernel}"; then
-        log_warn "Installed DKMS build does not match current kernel (${current_kernel})."
-        log_warn "Recommendation: run 'sudo dkms autoinstall' or reboot."
-    fi
+    
+    log_info "Ensuring DKMS build for current kernel (${current_kernel})..."
+    run_cmd dkms autoinstall -k "${current_kernel}" || true
+    
     return 0
 }
