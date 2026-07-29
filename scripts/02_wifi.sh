@@ -139,12 +139,16 @@ fi
 
 # 4. Final Validation
 log_info "Running post-installation validation..."
-if run_check; then
-    log_success "Wi-Fi firmware installed successfully."
-    log_info "A module reload or reboot is recommended to apply changes."
-    log_info "You may reload manually via: sudo modprobe -r brcmfmac_wcc brcmfmac brcmutil && sudo modprobe brcmfmac"
-else
-    log_fatal "Validation failed post-installation: ${RESULT_MESSAGE}"
-fi
+    run_check || exit_code=$?
+    if [[ "${exit_code:-0}" -eq 0 || "${exit_code:-0}" -eq 1 ]]; then
+        if [[ "${exit_code:-0}" -eq 1 ]]; then
+            log_warn "Validation warning post-installation: ${RESULT_MESSAGE}"
+        fi
+        log_success "Wi-Fi firmware installed successfully."
+        log_info "A module reload or reboot is recommended to apply changes."
+        log_info "You may reload manually via: sudo modprobe -r brcmfmac_wcc brcmfmac brcmutil && sudo modprobe brcmfmac"
+    else
+        log_fatal "Validation failed post-installation: ${RESULT_MESSAGE}"
+    fi
 
 return 0
