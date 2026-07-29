@@ -1,25 +1,31 @@
 # repairs/audio.sh
 
 REPAIR_ID="audio"
-REPAIR_DESCRIPTION="Installs offline Cirrus Logic audio DKMS package."
+REPAIR_DESCRIPTION="Reinstalls offline Cirrus Logic audio DKMS package."
+
+source "${SCRIPT_DIR}/platforms/macbookpro14-3.sh"
+source "${SCRIPT_DIR}/checks/04_audio.sh"
 
 repair() {
-    local deb_pkg="${SCRIPT_DIR}/assets/packages/mbp-cirrus-audio-dkms_1.0-1_all.deb"
+    local deb_pkg="${SCRIPT_DIR}/assets/packages/${AUDIO_PKG_FILE}"
     
     if [[ ! -f "${deb_pkg}" ]]; then
         log_error "Audio package not found: ${deb_pkg}"
         return 1
     fi
 
-    # DKMS uninstalls automatically upgrade cleanly via dpkg/apt in most cases,
-    # but we force install it via apt-get to resolve any local dependencies if needed.
-    # --allow-downgrades just in case
+    # Using standard apt reinstall strategy with local deb
     run_cmd apt-get install -y --reinstall "${deb_pkg}"
     return $?
 }
 
 repair_validate() {
-    if dkms status | grep -q "snd_hda_macbookpro"; then
+    # Reuse check logic
+    if run_check; then
+        return 0
+    fi
+    # If package installed but module not loaded, it's considered WARN (1) which is acceptable for repair success
+    if [[ $? -eq 1 ]]; then
         return 0
     fi
     return 1
@@ -27,5 +33,5 @@ repair_validate() {
 
 repair_rollback() {
     log_warn "Removing failed audio dkms."
-    run_cmd apt-get remove -y mbp-cirrus-audio-dkms || true
+    run_cmd apt-get remove -y "${AUDIO_PKG_NAME}" || true
 }
