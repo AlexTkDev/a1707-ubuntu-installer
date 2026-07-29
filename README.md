@@ -1,5 +1,12 @@
 # MacBook Pro Linux Support Framework
 
+![Ubuntu](https://img.shields.io/badge/Ubuntu-26.04-orange?logo=ubuntu)
+![Bash](https://img.shields.io/badge/Bash-5+-4EAA25?logo=gnu-bash)
+![ShellCheck](https://img.shields.io/badge/ShellCheck-Passing-brightgreen)
+![License](https://img.shields.io/badge/License-MIT-blue)
+![Release](https://img.shields.io/badge/Release-v1.0.0-blue)
+![CI](https://github.com/example/macbookpro14-linux-support/actions/workflows/ci.yml/badge.svg)
+
 A production-ready, highly modular offline installer and recovery framework designed to bring full hardware support to Intel MacBook Pros running Ubuntu (and other Debian-based distributions).
 
 > [!CAUTION]

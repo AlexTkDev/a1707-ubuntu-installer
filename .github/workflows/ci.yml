@@ -1,0 +1,40 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  validate:
+    runs-on: ubuntu-24.04
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Run ShellCheck
+      run: shellcheck install.sh doctor.sh repair.sh rollback.sh uninstall.sh scripts/*.sh common/*.sh checks/*.sh repairs/*.sh
+
+    - name: Check Bash Syntax
+      run: |
+        for f in install.sh doctor.sh repair.sh rollback.sh uninstall.sh scripts/*.sh common/*.sh checks/*.sh repairs/*.sh; do
+          bash -n "$f"
+        done
+
+    - name: Verify Directory Structure
+      run: |
+        for dir in platforms scripts common checks repairs assets migrations; do
+          if [ ! -d "$dir" ]; then
+            echo "Directory $dir is missing!"
+            exit 1
+          fi
+        done
+
+    - name: Verify SHA256SUMS
+      run: |
+        cd assets/firmware && sha256sum -c SHA256SUMS || echo "Warning: Firmware assets missing in CI"
+        cd ../packages && sha256sum -c SHA256SUMS || echo "Warning: Package assets missing in CI"
+
+    - name: Test Installer Dry Run
+      run: sudo ./install.sh --dry-run

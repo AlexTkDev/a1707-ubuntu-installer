@@ -21,4 +21,4 @@ export INSTALLER_MANIFEST="${STATE_DIR}/installer.manifest"
 export BACKUP_DIR="/var/backups/macbookpro14-linux-support"
 export LOG_FILE="/var/log/macbookpro14-installer.log"
 
-export INSTALLER_VERSION="2.0.0"
+export INSTALLER_VERSION="$(cat "${INSTALL_ROOT}/VERSION")"
