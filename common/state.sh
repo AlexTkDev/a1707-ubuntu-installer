@@ -2,10 +2,7 @@
 # common/state.sh
 # Manages installer state, manifests, and versioning.
 
-export STATE_DIR="/var/lib/macbookpro14-installer"
-export STATE_FILE="${STATE_DIR}/state.env"
-export BACKUP_MANIFEST="${STATE_DIR}/backups.manifest"
-export INSTALLER_MANIFEST="${STATE_DIR}/installer.manifest"
+
 
 record_install() {
     local item_type="$1"

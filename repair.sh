@@ -5,8 +5,9 @@ set -Eeuo pipefail
 IFS=$'\n\t'
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-source "${SCRIPT_DIR}/common/logging.sh"
-source "${SCRIPT_DIR}/common/backup.sh"
+source "${SCRIPT_DIR}/common/context.sh"
+source "${COMMON_DIR}/logging.sh"
+source "${COMMON_DIR}/backup.sh"
 
 # State
 TARGET_REPAIRS=()

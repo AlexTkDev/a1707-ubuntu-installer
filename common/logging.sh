@@ -3,7 +3,6 @@
 # Standalone logging framework for MacBook Pro Installer
 
 # Configuration
-export LOG_FILE="/var/log/macbookpro14-installer.log"
 export MAX_LOG_SIZE=$((10 * 1024 * 1024)) # 10 MB
 
 # State
