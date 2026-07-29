@@ -1,3 +1,5 @@
+# shellcheck shell=bash
+# shellcheck disable=SC2034,SC2154
 # checks/04_audio.sh
 
 check_id="audio"
@@ -10,7 +12,7 @@ run_check() {
     local module_loaded=0
 
     # 1. Check if package is installed
-    if dpkg -l | grep -q "^ii[[:space:]]*${AUDIO_PKG_NAME}[[:space:]]"; then
+    if dpkg -l | grep -q "^i[iUF][[:space:]]*${AUDIO_PKG_NAME}[[:space:]]"; then
         pkg_installed=1
     fi
 

@@ -30,6 +30,14 @@ fi
 
 log_info "Proceeding with Audio package installation..."
 
+# Install linux-source dependency if required by Cirrus audio DKMS
+local kernel_ver
+kernel_ver="$(uname -r | cut -d'-' -f1)"
+if ! ls /usr/src/linux-source-*.tar.bz2 >/dev/null 2>&1; then
+    log_info "Installing linux-source dependency for Cirrus Audio..."
+    run_cmd apt-get install -y "linux-source-${kernel_ver}" || run_cmd apt-get install -y linux-source || true
+fi
+
 if ! install_dkms_package "${AUDIO_PKG_NAME}" "${AUDIO_PKG_FILE}"; then
     log_fatal "Audio deployment failed during package installation."
 fi
