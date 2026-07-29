@@ -23,19 +23,17 @@ extract_facetimehd() {
         return 1
     fi
 
-    # macOS System Volume paths (Catalina and later use a separate System volume)
-    local kext_paths=(
-        "${MACOS_MOUNT_POINT}/System/Library/Extensions/AppleCameraInterface.kext/Contents/MacOS/AppleCameraInterface"
-        "${MACOS_MOUNT_POINT}/root/System/Library/Extensions/AppleCameraInterface.kext/Contents/MacOS/AppleCameraInterface"
-    )
-
+    log_info "Searching for AppleCameraInterface..."
     local target_kext=""
-    for path in "${kext_paths[@]}"; do
-        if [[ -f "${path}" ]]; then
-            target_kext="${path}"
-            break
-        fi
-    done
+    
+    # We use find to locate the binary. We limit depth to avoid excessively long searches.
+    # On newer macOS, it might be in System/Library/Extensions or similar paths.
+    local found_path
+    found_path="$(find "${MACOS_MOUNT_POINT}" -maxdepth 6 -type f -path "*/AppleCameraInterface.kext/Contents/MacOS/AppleCameraInterface" | head -n 1)"
+    
+    if [[ -n "${found_path}" && -f "${found_path}" ]]; then
+        target_kext="${found_path}"
+    fi
 
     if [[ -z "${target_kext}" ]]; then
         log_error "AppleCameraInterface.kext not found in macOS partition."
