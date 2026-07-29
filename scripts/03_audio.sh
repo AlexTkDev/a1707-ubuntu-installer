@@ -31,11 +31,10 @@ fi
 log_info "Proceeding with Audio package installation..."
 
 # Pre-seed offline HDA source cache if available
-local kernel_ver
 kernel_ver="$(uname -r | cut -d'-' -f1)"
-local cache_dir="/var/cache/mbp-cirrus-audio-dkms/hda-src"
-local cache_file="${cache_dir}/hda-${kernel_ver}.tar.gz"
-local asset_cache="${ASSETS_DIR}/audio/hda-${kernel_ver}.tar.gz"
+cache_dir="/var/cache/mbp-cirrus-audio-dkms/hda-src"
+cache_file="${cache_dir}/hda-${kernel_ver}.tar.gz"
+asset_cache="${ASSETS_DIR}/audio/hda-${kernel_ver}.tar.gz"
 
 if [[ -f "${asset_cache}" ]]; then
     log_info "Pre-seeding offline Cirrus HDA source cache (${kernel_ver})..."
