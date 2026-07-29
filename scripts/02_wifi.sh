@@ -39,8 +39,13 @@ CHECKSUMS_FILE="${ASSET_DIR}/SHA256SUMS"
 
 verify_checksum() {
     local target_file="$1"
+    local expected_filename="${2:-}"
     local filename
-    filename="$(basename "${target_file}")"
+    if [[ -n "${expected_filename}" ]]; then
+        filename="${expected_filename}"
+    else
+        filename="$(basename "${target_file}")"
+    fi
     
     if [[ ! -f "${CHECKSUMS_FILE}" ]]; then
         log_error "Checksums file missing at ${CHECKSUMS_FILE}"
@@ -86,7 +91,7 @@ install_firmware_file() {
     run_cmd cp -a "${src_file}" "${tmp_file}"
     
     # Verify checksum
-    if ! verify_checksum "${tmp_file}"; then
+    if ! verify_checksum "${tmp_file}" "${filename}"; then
         log_error "Verification failed for ${tmp_file}. Aborting."
         run_cmd rm -f "${tmp_file}"
         return 1
