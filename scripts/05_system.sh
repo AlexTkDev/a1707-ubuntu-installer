@@ -59,7 +59,8 @@ generate_final_report() {
 === Installation Summary Report ===
 Date: $(date -R)
 Kernel: $(uname -r)
-OS: $(. /etc/os-release 2>/dev/null && echo "${PRETTY_NAME:-Unknown}")
+OS: $(# shellcheck disable=SC1091
+    . /etc/os-release 2>/dev/null && echo "${PRETTY_NAME:-Unknown}")
 Model: $(cat /sys/class/dmi/id/product_name 2>/dev/null || echo "Unknown")
 
 DKMS Status:

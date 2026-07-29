@@ -14,13 +14,13 @@ install_audio_dkms() {
     log_info "Cloning audio driver repository..."
     check_internet
     git clone "${AUDIO_REPO}" "${tmp_dir}/snd_hda_macbookpro"
-    pushd "${tmp_dir}/snd_hda_macbookpro" >/dev/null
+    pushd "${tmp_dir}/snd_hda_macbookpro" >/dev/null || exit 1
     git checkout -q "${AUDIO_COMMIT}"
 
     chmod +x install.cirrus.driver.sh
     ./install.cirrus.driver.sh
 
-    popd >/dev/null
+    popd >/dev/null || exit 1
     rm -rf "${tmp_dir}"
 
     log_info "Verifying audio DKMS module..."
@@ -38,7 +38,7 @@ install_camera_dkms() {
     log_info "Cloning FaceTime HD camera driver repository..."
     check_internet
     git clone "${CAMERA_REPO}" "${tmp_dir}/bcwc_pcie"
-    pushd "${tmp_dir}/bcwc_pcie" >/dev/null
+    pushd "${tmp_dir}/bcwc_pcie" >/dev/null || exit 1
     git checkout -q "${CAMERA_COMMIT}"
 
     if [[ ! -f dkms.conf ]]; then
@@ -65,7 +65,7 @@ install_camera_dkms() {
     dkms build -m "${dkms_name}" -v "${dkms_ver}"
     dkms install -m "${dkms_name}" -v "${dkms_ver}"
 
-    popd >/dev/null
+    popd >/dev/null || exit 1
     rm -rf "${tmp_dir}"
 
     log_info "Verifying FaceTime HD DKMS status and modinfo..."

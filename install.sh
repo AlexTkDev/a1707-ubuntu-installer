@@ -7,7 +7,8 @@ set -Eeuo pipefail
 IFS=$'\n\t'
 
 # Determine script directory reliably
-readonly SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+readonly SCRIPT_DIR
 
 # Source utilities
 # shellcheck source=scripts/00_utils.sh

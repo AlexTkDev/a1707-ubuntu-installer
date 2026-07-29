@@ -28,7 +28,7 @@ fi
 echo "Restoring original configuration backups..."
 if [[ -d "${BACKUP_DIR}" ]]; then
     find "${BACKUP_DIR}" -type f | while read -r backup_file; do
-        rel_path="${backup_file#$BACKUP_DIR}"
+        rel_path="${backup_file#"$BACKUP_DIR"}"
         target_path="${rel_path%.bak}"
         if [[ -n "${target_path}" ]]; then
             echo "Restoring ${target_path}..."

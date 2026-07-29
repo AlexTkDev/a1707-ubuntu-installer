@@ -10,7 +10,8 @@ readonly LOG_FILE="/var/log/macbook-installer.log"
 readonly STATE_DIR="/var/lib/macbook-installer"
 readonly MANIFEST_FILE="${STATE_DIR}/manifest.txt"
 readonly BACKUP_DIR="${STATE_DIR}/backups"
-readonly REPORT_FILE="${STATE_DIR}/report.txt"
+
+export REPORT_FILE="${STATE_DIR}/report.txt"
 
 readonly COLOR_RESET="\033[0m"
 readonly COLOR_RED="\033[31m"
@@ -135,9 +136,11 @@ register_installed_file() {
 safe_backup() {
     local file_path="$1"
     if [[ -f "${file_path}" ]]; then
-        local target_backup="${BACKUP_DIR}$(dirname "${file_path}")"
+        local target_backup
+        target_backup="${BACKUP_DIR}$(dirname "${file_path}")"
         mkdir -p "${target_backup}"
-        local backup_file="${target_backup}/$(basename "${file_path}").bak"
+        local backup_file
+        backup_file="${target_backup}/$(basename "${file_path}").bak"
         log_info "Backing up ${file_path} to ${backup_file}"
         cp -a "${file_path}" "${backup_file}"
         REGISTERED_BACKUPS+=("${file_path}")

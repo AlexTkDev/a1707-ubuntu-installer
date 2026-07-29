@@ -84,13 +84,13 @@ install_facetimehd_firmware() {
     log_info "Cloning facetimehd-firmware at pinned commit ${FACETIMEHD_FW_COMMIT}..."
     check_internet
     git clone "${FACETIMEHD_FW_REPO}" "${tmp_dir}/facetimehd-firmware"
-    pushd "${tmp_dir}/facetimehd-firmware" >/dev/null
+    pushd "${tmp_dir}/facetimehd-firmware" >/dev/null || exit 1
     git checkout -q "${FACETIMEHD_FW_COMMIT}"
 
     make
     make install
 
-    popd >/dev/null
+    popd >/dev/null || exit 1
     rm -rf "${tmp_dir}"
 
     local fw_facetime="/lib/firmware/facetimehd/firmware.bin"
