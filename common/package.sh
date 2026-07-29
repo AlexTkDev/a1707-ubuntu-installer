@@ -6,7 +6,7 @@ verify_checksum() {
     local target_file="$1"
     local filename
     filename="$(basename "${target_file}")"
-    local checksums_file="${SCRIPT_DIR}/assets/packages/SHA256SUMS"
+    local checksums_file="${ASSETS_DIR}/packages/SHA256SUMS"
     
     if [[ ! -f "${checksums_file}" ]]; then
         log_error "Checksums file missing at ${checksums_file}"
@@ -34,7 +34,7 @@ verify_checksum() {
 install_dkms_package() {
     local pkg_name="$1"
     local pkg_file="$2"
-    local deb_path="${SCRIPT_DIR}/assets/packages/${pkg_file}"
+    local deb_path="${ASSETS_DIR}/packages/${pkg_file}"
     
     # 1. File and Checksum Verification
     if [[ ! -f "${deb_path}" ]]; then
