@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # common/package.sh
 # Shared logic for validating and installing DKMS deb packages.
+source "${INSTALL_ROOT:-$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)}/common/system.sh"
 
 verify_checksum() {
     local target_file="$1"
