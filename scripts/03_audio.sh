@@ -30,12 +30,17 @@ fi
 
 log_info "Proceeding with Audio package installation..."
 
-# Install linux-source dependency if required by Cirrus audio DKMS
+# Pre-seed offline HDA source cache if available
 local kernel_ver
 kernel_ver="$(uname -r | cut -d'-' -f1)"
-if ! ls /usr/src/linux-source-*.tar.bz2 >/dev/null 2>&1; then
-    log_info "Installing linux-source dependency for Cirrus Audio..."
-    run_cmd apt-get install -y "linux-source-${kernel_ver}" || run_cmd apt-get install -y linux-source || true
+local cache_dir="/var/cache/mbp-cirrus-audio-dkms/hda-src"
+local cache_file="${cache_dir}/hda-${kernel_ver}.tar.gz"
+local asset_cache="${ASSETS_DIR}/audio/hda-${kernel_ver}.tar.gz"
+
+if [[ -f "${asset_cache}" && ! -f "${cache_file}" ]]; then
+    log_info "Pre-seeding offline Cirrus HDA source cache (${kernel_ver})..."
+    run_cmd mkdir -p "${cache_dir}"
+    run_cmd cp "${asset_cache}" "${cache_file}"
 fi
 
 if ! install_dkms_package "${AUDIO_PKG_NAME}" "${AUDIO_PKG_FILE}"; then
