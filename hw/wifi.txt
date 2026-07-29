@@ -1,0 +1,102 @@
+Wi-Fi:
+
+      Software Versions:
+          CoreWLAN: 16.0 (1657)
+          CoreWLANKit: 16.0 (1657)
+          Menu Extra: 17.0 (1728)
+          System Information: 15.0 (1502)
+          IO80211 Family: 12.0 (1200.13.0)
+          Diagnostics: 11.0 (1163)
+          AirPort Utility: 6.3.9 (639.21)
+      Interfaces:
+        en0:
+          Card Type: Wi-Fi  (0x14E4, 0x173)
+          Firmware Version: Broadcom BCM43xx 1.0 (7.77.111.1 AirPortDriverBrcmNIC-1772.1)
+          MAC Address: dc:a9:04:92:72:48
+          Locale: FCC
+          Country Code: UA
+          Supported PHY Modes: 802.11 a/b/g/n/ac
+          Supported Channels: 1 (2GHz), 2 (2GHz), 3 (2GHz), 4 (2GHz), 5 (2GHz), 6 (2GHz), 7 (2GHz), 8 (2GHz), 9 (2GHz), 10 (2GHz), 11 (2GHz), 12 (2GHz), 13 (2GHz), 36 (5GHz), 40 (5GHz), 44 (5GHz), 48 (5GHz), 52 (5GHz), 56 (5GHz), 60 (5GHz), 64 (5GHz), 100 (5GHz), 104 (5GHz), 108 (5GHz), 112 (5GHz), 116 (5GHz), 120 (5GHz), 124 (5GHz), 128 (5GHz), 149 (5GHz), 153 (5GHz), 157 (5GHz), 161 (5GHz), 165 (5GHz)
+          Wake On Wireless: Supported
+          AirDrop: Supported
+          AirDrop Channel: 149
+          Auto Unlock: Supported
+          Status: Connected
+          Current Network Information:
+            Lightning_5G:
+              PHY Mode: 802.11ac
+              Channel: 40 (5GHz, 80MHz)
+              Country Code: UA
+              Network Type: Infrastructure
+              Security: WPA2/WPA3 Personal
+              Signal / Noise: -44 dBm / -95 dBm
+              Transmit Rate: 1300
+              MCS Index: 9
+          Other Local Wi-Fi Networks:
+            Hogwarts:
+              PHY Mode: 802,11
+              Channel: 11 (2GHz, 40MHz)
+              Network Type: Infrastructure
+              Security: WPA2 Personal
+              Signal / Noise: -51 dBm / 0 dBm
+            Hogwarts_5G:
+              PHY Mode: 802,11
+              Channel: 36 (5GHz, 80MHz)
+              Network Type: Infrastructure
+              Security: WPA2 Personal
+              Signal / Noise: -57 dBm / 0 dBm
+            Home:
+              PHY Mode: 802,11
+              Channel: 1 (2GHz, 20MHz)
+              Network Type: Infrastructure
+              Security: WPA2 Personal
+              Signal / Noise: -62 dBm / 0 dBm
+            Judi:
+              PHY Mode: 802,11
+              Channel: 11 (2GHz, 40MHz)
+              Network Type: Infrastructure
+              Security: WPA2 Personal
+              Signal / Noise: -77 dBm / 0 dBm
+            K135:
+              PHY Mode: 802,11
+              Channel: 11 (2GHz, 20MHz)
+              Network Type: Infrastructure
+              Security: WPA/WPA2 Personal
+              Signal / Noise: -74 dBm / 0 dBm
+            Lightning:
+              PHY Mode: 802,11
+              Channel: 10 (2GHz, 20MHz)
+              Network Type: Infrastructure
+              Security: WPA2/WPA3 Personal
+              Signal / Noise: -40 dBm / 0 dBm
+            Lightning_5G:
+              PHY Mode: 802,11
+              Channel: 40 (5GHz, 80MHz)
+              Network Type: Infrastructure
+              Security: WPA2/WPA3 Personal
+              Signal / Noise: -41 dBm / 0 dBm
+            TP-Link_C4DA:
+              PHY Mode: 802,11
+              Channel: 3 (2GHz, 20MHz)
+              Network Type: Infrastructure
+              Security: WPA/WPA2 Personal
+              Signal / Noise: -53 dBm / 0 dBm
+            TP-Link_C4DA_5G:
+              PHY Mode: 802,11
+              Channel: 44 (5GHz, 80MHz)
+              Network Type: Infrastructure
+              Security: WPA/WPA2 Personal
+              Signal / Noise: -69 dBm / 0 dBm
+            Vahnet-5G:
+              PHY Mode: 802,11
+              Channel: 52 (5GHz, 80MHz)
+              Network Type: Infrastructure
+              Security: WPA2 Personal
+              Signal / Noise: -86 dBm / 0 dBm
+        awdl0:
+          MAC Address: 1a:79:50:4c:f8:10
+          Supported Channels: 1 (2GHz), 2 (2GHz), 3 (2GHz), 4 (2GHz), 5 (2GHz), 6 (2GHz), 7 (2GHz), 8 (2GHz), 9 (2GHz), 10 (2GHz), 11 (2GHz), 12 (2GHz), 13 (2GHz), 36 (5GHz), 40 (5GHz), 44 (5GHz), 48 (5GHz), 52 (5GHz), 56 (5GHz), 60 (5GHz), 64 (5GHz), 100 (5GHz), 104 (5GHz), 108 (5GHz), 112 (5GHz), 116 (5GHz), 120 (5GHz), 124 (5GHz), 128 (5GHz), 149 (5GHz), 153 (5GHz), 157 (5GHz), 161 (5GHz), 165 (5GHz)
+          Current Network Information:
+              Network Type: Infrastructure
+              Security: None
+

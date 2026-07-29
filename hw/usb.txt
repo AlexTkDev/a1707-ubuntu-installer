@@ -1,0 +1,33 @@
+USB:
+
+    USB 3.1 Bus:
+
+      Host Controller Driver: AppleUSBXHCIAR
+      PCI Device ID: 0x15d4 
+      PCI Revision ID: 0x0002 
+      PCI Vendor ID: 0x8086 
+      Bus Number: 0x00 
+
+    USB 3.1 Bus:
+
+      Host Controller Driver: AppleUSBXHCIAR
+      PCI Device ID: 0x15d4 
+      PCI Revision ID: 0x0002 
+      PCI Vendor ID: 0x8086 
+      Bus Number: 0x01 
+
+    USB 3.0 Bus:
+
+      Host Controller Driver: AppleUSBXHCISPT
+      PCI Device ID: 0xa12f 
+      PCI Revision ID: 0x0031 
+      PCI Vendor ID: 0x8086 
+
+        Apple T1 Controller:
+
+          Product ID: 0x8600
+          Vendor ID: 0x05ac (Apple Inc.)
+          Version: 1.01
+          Manufacturer: Apple Inc.
+          Location ID: 0x14200000
+

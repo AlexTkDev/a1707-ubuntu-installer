@@ -1,0 +1,21 @@
+Hardware:
+
+    Hardware Overview:
+
+      Model Name: MacBook Pro
+      Model Identifier: MacBookPro14,3
+      Processor Name: Quad-Core Intel Core i7
+      Processor Speed: 2,8 GHz
+      Number of Processors: 1
+      Total Number of Cores: 4
+      L2 Cache (per Core): 256 KB
+      L3 Cache: 6 MB
+      Hyper-Threading Technology: Enabled
+      Memory: 16 GB
+      System Firmware Version: 529.140.2.0.0
+      OS Loader Version: 577.140.2~30
+      SMC Version (system): 2.45f5
+      Serial Number (system): C02TV865HTD5
+      Hardware UUID: C440D2AF-E18E-5F98-A96D-F466CD3B7905
+      Provisioning UDID: C440D2AF-E18E-5F98-A96D-F466CD3B7905
+

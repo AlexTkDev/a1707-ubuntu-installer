@@ -1,0 +1,31 @@
+Audio:
+
+    Devices:
+
+        Микрофон (Alex ):
+
+          Input Channels: 1
+          Manufacturer: Apple Inc.
+          Current SampleRate: 48000
+          Transport: Unknown
+          Input Source: Default
+
+        Built-in Microphone:
+
+          Default Input Device: Yes
+          Input Channels: 2
+          Manufacturer: Apple Inc.
+          Current SampleRate: 44100
+          Transport: Built-in
+          Input Source: Internal Microphone
+
+        Built-in Output:
+
+          Default Output Device: Yes
+          Default System Output Device: Yes
+          Manufacturer: Apple Inc.
+          Output Channels: 2
+          Current SampleRate: 44100
+          Transport: Built-in
+          Output Source: Internal Speakers
+

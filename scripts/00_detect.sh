@@ -8,7 +8,7 @@ detect_hardware() {
     
     # OS & Distribution Check
     if [[ -f /etc/os-release ]]; then
-        # shellcheck source=/dev/null
+        # shellcheck disable=SC1091
         . /etc/os-release
         if [[ "${ID:-}" == "ubuntu" || "${ID_LIKE:-}" == *"ubuntu"* ]]; then
             log_success "[✔] OS: ${PRETTY_NAME:-Ubuntu}"
@@ -76,23 +76,31 @@ detect_hardware() {
 
     local model="${sysfs_product:-$dmi_product}"
     local board="${sysfs_board:-$dmi_board}"
+
+    # Target Board ID for MacBookPro14,3: Mac-551B86E5744E2388
+    readonly TARGET_BOARD_ID="Mac-551B86E5744E2388"
     
     if [[ "${model}" == *"MacBookPro14,3"* || "${model}" == *"MacBookPro13,3"* ]]; then
         log_success "[✔] Model: ${model}"
     else
         log_warn "[!] Model: ${model:-Unknown} (Target: MacBookPro14,3 / MacBookPro13,3)"
     fi
-    log_success "    Board ID: ${board:-Unknown}"
+
+    if [[ "${board}" == "${TARGET_BOARD_ID}" ]]; then
+        log_success "    Board ID: ${board} (Exact MacBookPro14,3 match)"
+    else
+        log_success "    Board ID: ${board:-Unknown}"
+    fi
     
-    # WiFi Check
-    if lspci | grep -qi "BCM43602"; then
-        log_success "[✔] WiFi: Broadcom BCM43602 detected"
+    # WiFi Check (Vendor: 0x14E4, Device: 0x43BA / Subsystem: 0x0173)
+    if lspci -nn | grep -qiE "14e4:43ba|BCM43602"; then
+        log_success "[✔] WiFi: Broadcom BCM43602 (0x14E4:0x43BA) detected"
     else
         log_warn "[!] WiFi: BCM43602 not detected on PCI bus"
     fi
     
     # Camera Check
-    if lspci | grep -qi "1570"; then
+    if lspci -nn | grep -qiE "14e4:1570|1570"; then
         log_success "[✔] Camera: Broadcom 1570 (FaceTime HD) detected"
     else
         log_warn "[!] Camera: FaceTime HD 1570 not detected on PCI bus"

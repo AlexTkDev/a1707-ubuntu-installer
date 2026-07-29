@@ -1,0 +1,27 @@
+
+Hardware Port: Thunderbolt Bridge
+Device: bridge0
+Ethernet Address: 82:1a:49:44:38:01
+
+Hardware Port: Wi-Fi
+Device: en0
+Ethernet Address: dc:a9:04:92:72:48
+
+Hardware Port: Thunderbolt 1
+Device: en1
+Ethernet Address: 82:1a:49:44:38:01
+
+Hardware Port: Thunderbolt 2
+Device: en2
+Ethernet Address: 82:1a:49:44:38:00
+
+Hardware Port: Thunderbolt 3
+Device: en3
+Ethernet Address: 82:1a:49:44:38:05
+
+Hardware Port: Thunderbolt 4
+Device: en4
+Ethernet Address: 82:1a:49:44:38:04
+
+VLAN Configurations
+===================
