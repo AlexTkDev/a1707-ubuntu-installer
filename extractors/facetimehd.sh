@@ -59,13 +59,26 @@ extract_facetimehd() {
     # Since we are offline-first, the project should bundle the python extraction script or logic.
     # For now, this is a stub for the actual extraction logic:
     
-    if [[ ! -f "${SCRIPT_DIR}/facetimehd-extractor.py" ]]; then
-        log_error "Extractor script facetimehd-extractor.py not found in extractors/."
+    if [[ ! -f "${SCRIPT_DIR}/extract-facetimehd.sh" ]]; then
+        log_error "Extractor script extract-facetimehd.sh not found in extractors/."
         rm -rf "${temp_dir}"
         return 1
     fi
     
-    # run_cmd python3 "${SCRIPT_DIR}/facetimehd-extractor.py" "${temp_dir}/AppleCameraInterface" "${FACETIMEHD_FIRMWARE_DEST}"
+    # The script outputs firmware.bin to the current directory
+    (
+        cd "${temp_dir}" || exit 1
+        run_cmd bash "${SCRIPT_DIR}/extract-facetimehd.sh" -x "AppleCameraInterface"
+        if [[ -f "firmware.bin" ]]; then
+            cp "firmware.bin" "${FACETIMEHD_FIRMWARE_DEST}"
+        fi
+    )
+    
+    if [[ ! -f "${FACETIMEHD_FIRMWARE_DEST}" ]]; then
+        log_error "Extraction failed. firmware.bin was not created."
+        rm -rf "${temp_dir}"
+        return 1
+    fi
     
     log_success "FaceTime HD firmware extracted successfully to ${FACETIMEHD_FIRMWARE_DEST}."
     
