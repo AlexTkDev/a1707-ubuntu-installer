@@ -13,7 +13,6 @@ source "${SCRIPT_DIR}/common/system.sh"
 source "${SCRIPT_DIR}/common/package.sh"
 source "${SCRIPT_DIR}/checks/04_audio.sh"
 
-init_logging_session
 
 if [[ -z "${PLATFORM_NAME:-}" ]]; then
     source "${SCRIPT_DIR}/platforms/macbookpro14-3.sh"
@@ -25,7 +24,7 @@ log_info "Starting Audio deployment module for ${PLATFORM_NAME}..."
 if run_check; then
     if [[ "${RESULT_MESSAGE}" == *"operational"* ]]; then
         log_success "Audio package is already installed and verified. Skipping."
-        close_logging_session
+        return 0
     fi
 fi
 
@@ -48,4 +47,4 @@ else
     fi
 fi
 
-close_logging_session
+return 0

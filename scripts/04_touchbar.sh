@@ -13,7 +13,6 @@ source "${SCRIPT_DIR}/common/system.sh"
 source "${SCRIPT_DIR}/common/package.sh"
 source "${SCRIPT_DIR}/checks/05_touchbar.sh"
 
-init_logging_session
 
 if [[ -z "${PLATFORM_NAME:-}" ]]; then
     source "${SCRIPT_DIR}/platforms/macbookpro14-3.sh"
@@ -23,14 +22,14 @@ log_info "Starting Touch Bar deployment module for ${PLATFORM_NAME}..."
 
 if [[ "${TOUCHBAR_SUPPORTED:-0}" -eq 0 ]]; then
     log_info "Touch Bar is not supported on this platform. Skipping."
-    close_logging_session
+    return 0
 fi
 
 # 1. Idempotency Check
 if run_check; then
     if [[ "${RESULT_MESSAGE}" == *"operational"* ]]; then
         log_success "Touch Bar package is already installed and verified. Skipping."
-        close_logging_session
+        return 0
     fi
 fi
 
@@ -53,4 +52,4 @@ else
     fi
 fi
 
-close_logging_session
+return 0

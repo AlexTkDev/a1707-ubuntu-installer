@@ -13,7 +13,6 @@ source "${SCRIPT_DIR}/common/state.sh"
 # Source doctor checks to reuse validation logic
 source "${SCRIPT_DIR}/checks/03_wifi.sh"
 
-init_logging_session
 
 log_info "Starting Wi-Fi deployment module..."
 
@@ -29,7 +28,7 @@ log_info "Target Platform: ${PLATFORM_NAME} (v${PLATFORM_VERSION:-1})"
 # 1. Idempotency Check
 if run_check; then
     log_success "Wi-Fi firmware is already installed and verified. Skipping."
-    close_logging_session
+    return 0
 fi
 
 log_info "Proceeding with Wi-Fi firmware installation..."
@@ -148,4 +147,4 @@ else
     log_fatal "Validation failed post-installation: ${RESULT_MESSAGE}"
 fi
 
-close_logging_session
+return 0
