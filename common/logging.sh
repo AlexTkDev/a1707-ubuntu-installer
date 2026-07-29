@@ -15,13 +15,13 @@ export SESSION_ERRORS=0
 export SESSION_START_TIME="${SECONDS}"
 
 # ANSI Colors
-readonly C_RESET="\e[0m"
-readonly C_RED="\e[31m"
-readonly C_GREEN="\e[32m"
-readonly C_YELLOW="\e[33m"
-readonly C_BLUE="\e[34m"
-readonly C_CYAN="\e[36m"
-readonly C_PURPLE="\e[35m"
+export C_RESET="\e[0m"
+export C_RED="\e[31m"
+export C_GREEN="\e[32m"
+export C_YELLOW="\e[33m"
+export C_BLUE="\e[34m"
+export C_CYAN="\e[36m"
+export C_PURPLE="\e[35m"
 
 _rotate_logs() {
     # Ensure log directory exists
