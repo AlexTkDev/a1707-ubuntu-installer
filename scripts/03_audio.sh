@@ -43,6 +43,14 @@ if [[ -f "${asset_cache}" && ! -f "${cache_file}" ]]; then
     run_cmd cp "${asset_cache}" "${cache_file}"
 fi
 
+# Fix upstream popd stack bug when cached sources are used
+if [[ -f /usr/src/snd_hda_macbookpro-1.0/install.cirrus.driver.sh ]]; then
+    run_cmd sed -i 's/popd > \/dev\/null/popd > \/dev\/null 2>\&1 || true/' /usr/src/snd_hda_macbookpro-1.0/install.cirrus.driver.sh
+fi
+if [[ -f /var/lib/dkms/snd_hda_macbookpro/1.0/build/install.cirrus.driver.sh ]]; then
+    run_cmd sed -i 's/popd > \/dev\/null/popd > \/dev\/null 2>\&1 || true/' /var/lib/dkms/snd_hda_macbookpro/1.0/build/install.cirrus.driver.sh
+fi
+
 if ! install_dkms_package "${AUDIO_PKG_NAME}" "${AUDIO_PKG_FILE}"; then
     log_fatal "Audio deployment failed during package installation."
 fi
