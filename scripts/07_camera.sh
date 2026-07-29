@@ -5,11 +5,6 @@
 set -Eeuo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-source "${SCRIPT_DIR}/../common/context.sh"
-source "${COMMON_DIR}/logging.sh"
-source "${COMMON_DIR}/state.sh"
-source "${COMMON_DIR}/package.sh"
-
 log_info "Installing Camera (FaceTime HD) framework..."
 
 # 1. Platform validation

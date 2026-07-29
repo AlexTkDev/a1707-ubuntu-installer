@@ -7,7 +7,7 @@
 record_install() {
     local item_type="$1"
     local item_id="$2"
-    local extra="$3"
+    local extra="${3:-}"
     
     # Do not track during dry runs
     if [[ "${DRY_RUN_ENABLED:-0}" -eq 1 ]]; then
