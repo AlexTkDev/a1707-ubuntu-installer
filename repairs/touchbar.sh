@@ -1,3 +1,5 @@
+# shellcheck shell=bash
+# shellcheck disable=SC2034,SC2154
 # repairs/touchbar.sh
 
 REPAIR_ID="touchbar"

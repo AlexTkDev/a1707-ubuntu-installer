@@ -12,7 +12,7 @@ run_check() {
     local module_loaded=0
 
     # 1. Check if package is installed
-    if dpkg -l | grep -q "^i[iUF][[:space:]]*${AUDIO_PKG_NAME}[[:space:]]"; then
+    if dpkg-query -W -f='${Status}\n' "${AUDIO_PKG_NAME}" 2>/dev/null | grep -q "installed"; then
         pkg_installed=1
     fi
 
@@ -24,6 +24,11 @@ run_check() {
     # 3. Check if module is loaded
     if lsmod | grep -q "${AUDIO_DRIVER}"; then
         module_loaded=1
+    fi
+    
+    # Debug info for log
+    if [[ ${pkg_installed} -eq 0 || ${dkms_registered} -eq 0 ]]; then
+        echo "DEBUG: pkg_installed=${pkg_installed}, dkms_registered=${dkms_registered}, AUDIO_PKG_NAME=${AUDIO_PKG_NAME}, AUDIO_DRIVER=${AUDIO_DRIVER}" >> "/tmp/audio_check_debug.log"
     fi
 
     if [[ ${pkg_installed} -eq 1 && ${dkms_registered} -eq 1 ]]; then

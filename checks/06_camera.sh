@@ -21,8 +21,8 @@ run_check() {
         return 2
     fi
 
-    local dkms_status
-    dkms_status="$(run_cmd dkms status | grep "${CAMERA_PKG_NAME}" || true)"
+    local dkms_name="${CAMERA_PKG_NAME%-dkms}"
+    dkms_status="$(run_cmd dkms status | grep "${dkms_name}" || true)"
     
     if [[ -z "${dkms_status}" ]]; then
         RESULT_MESSAGE="facetimehd DKMS package is not installed."

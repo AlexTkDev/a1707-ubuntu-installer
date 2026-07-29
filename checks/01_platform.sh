@@ -1,3 +1,5 @@
+# shellcheck shell=bash
+# shellcheck disable=SC2034,SC2154
 # checks/01_platform.sh
 
 check_id="platform"

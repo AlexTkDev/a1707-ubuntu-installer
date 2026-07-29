@@ -1,201 +1,67 @@
-# Ubuntu Installer for MacBook Pro 15" 2017 (A1707 / MacBookPro14,3)
+# Ubuntu Installer for MacBook Pro 15" 2017 (A1707)
 
 ![Ubuntu](https://img.shields.io/badge/Ubuntu-26.04-orange?logo=ubuntu)
 ![Bash](https://img.shields.io/badge/Bash-5+-4EAA25?logo=gnu-bash)
-![ShellCheck](https://img.shields.io/badge/ShellCheck-Passing-brightgreen)
-![License](https://img.shields.io/badge/License-MIT-blue)
-![Release](https://img.shields.io/badge/Release-v1.0.0-blue)
-![CI](https://github.com/AlexTkDev/a1707-ubuntu-installer/actions/workflows/ci.yml/badge.svg)
 
-**The goal of this project is simple: after reinstalling Ubuntu on my MacBook Pro A1707, I want to restore full hardware functionality with a single command.**
+This is a simple set of scripts I made to restore full hardware functionality on my MacBook Pro A1707 after installing Ubuntu. I am sharing it with the community in hopes that it helps someone else struggling with missing drivers for Wi-Fi, Audio, Touch Bar, or the Camera.
 
-> [!CAUTION]
-> **Disclaimer**  
-> This project modifies system components, installs third-party DKMS modules, and replaces critical firmware. Please back up all important data before proceeding. Use at your own risk.
+> **Note:** This project installs third-party DKMS modules and firmware. Please back up your data and use at your own risk.
 
 ---
 
-## 🏗 Project Architecture
+## Supported Hardware
 
-This installer is built around a safety-first, declarative lifecycle rather than a monolithic script. The architecture decouples detection, orchestration, installation, and recovery.
-
-```mermaid
-graph TD
-    A[install.sh] -->|Iterates| B(Phase Registry)
-    B --> C[01_prerequisites]
-    B --> D[02_wifi]
-    B --> E[03_audio]
-    B --> F[...]
-    
-    C & D & E & F --> G{Common Libraries}
-    G --> H((state.env))
-    G --> I((manifests))
-    
-    H & I --> J[doctor.sh]
-    H & I --> K[repair.sh]
-    H & I --> L[rollback.sh]
-```
-
----
-
-## 💻 Supported Hardware
-
-**This project is designed, tested and maintained exclusively for the MacBook Pro 15" 2017 (A1707 / MacBookPro14,3).**
+This installer is specifically designed and tested for the **MacBook Pro 15" 2017 (A1707 / MacBookPro14,3)**.
 
 | Component      | Status | Notes                       |
 | -------------- | ------ | --------------------------- |
-| Wi-Fi BCM43602 | ✅      | Offline firmware deployment |
-| Audio CS8409   | ✅      | DKMS package                |
-| Touch Bar (T1) | ✅      | DKMS package                |
+| Wi-Fi BCM43602 | ✅      | Installs correct firmware   |
+| Audio CS8409   | ✅      | Installs DKMS driver        |
+| Touch Bar (T1) | ✅      | Installs DKMS driver        |
+| Camera         | ✅      | FaceTime HD DKMS & firmware |
 | Bluetooth      | ✅      | Native kernel support       |
 
-Although the architecture is modular and can be adapted to other Intel Mac models, **only A1707 is officially supported**.
-
 ---
 
-## 📂 Repository Structure
+## How to Install
 
-The framework is organized into strictly delineated modules:
+1. Clone or download this repository.
+2. Run the main installation script:
 
-- **`install.sh`**: The main orchestrator. It manages execution context, runs migrations, loops through the phase registry, and generates reports. It contains *zero* installation logic.
-- **`platforms/`**: Hardware definition files (e.g., `macbookpro14-3.sh`). Determines which chips, packages, and kernel versions are required for a specific Mac model.
-- **`scripts/`**: Individual, idempotently designed installation phases (Wi-Fi, Audio, Touch Bar).
-- **`common/`**: Shared libraries providing the `logging`, `backup`, `state`, `system`, and `package` APIs.
-- **`checks/`**: Diagnostic modules used by `doctor.sh` to validate system health.
-- **`repairs/`**: Granular fix modules used by `repair.sh` to correct individual broken components.
-- **`assets/`**: Pre-downloaded, SHA256-verified firmware blobs and `.deb` packages (offline-first design).
-- **`migrations/`**: State migration scripts executed automatically during version upgrades.
-- **`doctor.sh`, `repair.sh`, `rollback.sh`, `uninstall.sh`**: Specialized lifecycle tools (see below).
-
----
-
-## 🚀 Installation
-
-The entire installation is offline-first. Ensure you have cloned this repository fully (including `assets/`).
-
-### Standard Run
 ```bash
 sudo ./install.sh
 ```
 
-### CLI Options
+3. Once the script finishes, **reboot your laptop**.
 
-The orchestrator supports a powerful CLI for targeted execution and debugging:
-
-- `--dry-run` : Simulates execution without modifying the system.
-- `--verbose`, `-v` : Increases logging verbosity.
-- `--debug` : Prints full debug tracing.
-- `--phase NAME` : Run only a specific phase (e.g., `sudo ./install.sh --phase wifi`).
-- `--from-phase NAME` : Resume installation from a specific phase.
-- `--skip NAME` : Skip a specific phase.
-- `--list-phases` : Print all available installation phases.
-
-Example: Re-run only the Touch Bar phase with debug logging:
-```bash
-sudo ./install.sh --phase touchbar --debug
-```
+### Useful Options
+- `--phase NAME` : Run only a specific part (e.g., `sudo ./install.sh --phase audio`).
+- `--skip NAME` : Skip a specific part.
+- `--verbose` or `--debug` : Get more detailed output if something goes wrong.
 
 ---
 
-## 🛠 Recovery Tools
+## Troubleshooting Tools
 
-This framework is built around distinct recovery mechanisms rather than a single script.
+If something isn't working right after a kernel update or installation, you can use these tools:
 
-### 1. `doctor.sh`
-The single source of truth for system health. It executes tests from `checks/` without altering the system.
+- **`sudo ./doctor.sh`**  
+  Checks your system to see what is missing or broken (DKMS modules, packages, firmware) without changing anything.
 
-**Exit Codes:**
-- `0 (PASS)`: Hardware is operational.
-- `1 (WARN)`: Packages installed, but module inactive (e.g., requires reboot).
-- `2 (FAIL)`: Missing packages, failed DKMS builds, or broken symlinks.
+- **`sudo ./repair.sh --all`**  
+  Tries to automatically fix any issues found by the doctor script.
 
-**Output Formats:**
-```bash
-sudo ./doctor.sh --compact
-sudo ./doctor.sh --json
-```
-
-### 2. `repair.sh`
-A modular healing tool. It consumes `doctor.sh` JSON output to determine exactly which repair modules in `repairs/` to trigger.
-
-```bash
-sudo ./repair.sh --audio
-sudo ./repair.sh --repair-id wifi_symlink
-sudo ./repair.sh --all
-```
-
-### 3. `rollback.sh`
-A transactional, safety-first undo tool. 
-- **What it does:** Reverts the exact file modifications and symlinks recorded in `installer.manifest`, and restores original files from `backups.manifest`.
-- **What it DOES NOT do:** It will never recursively delete directories (`rm -rf`), and it will never guess which dependencies to remove. It is strictly tied to the recorded installer state.
-
-### 4. `uninstall.sh`
-A dedicated purge script designed to permanently remove all framework configurations, logs, state files, and associated packages if you decide to completely leave the framework.
+- **`sudo ./rollback.sh`**  
+  Undoes the changes made by the installer and restores backup files.
 
 ---
 
-## ⚙️ Extending the Framework
+## Future Plans
 
-### Adding a New Platform
-The platform abstraction exists to keep the installer modular. Other models are **not supported**, but advanced users may adapt the framework by creating their own platform definition.
-1. Create `platforms/macmodelX-Y.sh`.
-2. Define standard hardware variables (`PLATFORM_ID`, `BOARD_ID`, `WIFI_CHIP`, `AUDIO_PKG_NAME`, etc.).
-3. The orchestrator will dynamically load this definition based on `/sys/class/dmi/id/board_name`.
+- Improve power management and battery life
+- Better suspend/resume support
+- Automatic firmware extraction directly from macOS
 
-### Migrations
-Migrations live in `migrations/`. They exist to seamlessly upgrade the state of users running an older version of the installer to a newer one without requiring a full reinstall.
-- The orchestrator checks `STATE_FILE` against the migrations directory and executes them sequentially.
-- Once executed, a migration is marked `DONE` and never reruns.
+## License
 
----
-
-## 💡 Troubleshooting & FAQ
-
-#### The Broadcom BCM43602 board file issue
-> **Q: Why does my 5GHz Wi-Fi not work out of the box on Ubuntu?**  
-> **A:** Ubuntu occasionally ships an incorrect, truncated 339-byte board file (`brcmfmac43602-pcie.txt`) for MacBookPro14,3. This installer actively detects the 339-byte file footprint via `doctor.sh`, backs it up, and replaces it with the verified ~6KB board file used during kernel development, restoring full 5GHz functionality while preserving rollback capability.
-
-#### Optional Firmware Warnings
-> **Q: Why does `doctor.sh` warn about a missing `clm_blob` or `txcap_blob`?**  
-> **A:** These are optional regulatory blobs requested by the Broadcom driver. While they optimize channel availability in specific regions, core Wi-Fi functionality operates perfectly without them. This generates a `WARN` rather than a `FAIL`.
-
-#### DKMS Kernel Mismatches
-> **Q: I updated my kernel, and now audio stopped working. What do I do?**  
-> **A:** When Ubuntu upgrades your kernel, DKMS modules need to rebuild. If this fails silently, `install.sh` or `doctor.sh` will detect the kernel version mismatch (e.g., `Current kernel: 6.12.0` vs DKMS build) and prompt you to run `sudo dkms autoinstall` or trigger `repair.sh --audio`.
-
-#### Reloading vs. Rebooting
-> **Q: Do I need to reboot after installation?**  
-> **A:** The installer deliberately avoids forcibly unloading network or audio modules (`modprobe -r`) to prevent crashing active user sessions or severing SSH connections. Therefore, a manual `modprobe` reload or a system reboot is recommended to activate the drivers after installation.
-
-#### Rollback vs. Uninstall
-> **Q: What is the difference between rollback and uninstall?**  
-> **A:** `rollback.sh` is a transactional *undo* command. It simply reverts the last installation session back to its pristine pre-install state using backup manifests. `uninstall.sh` is a destructive *purge* command that rips out all traces of the framework entirely.
-
----
-
-## 👨‍💻 Development
-
-### Coding Guidelines
-- **Language**: Bash 5.0+ strictly enforced.
-- **Linter**: Code must be 100% `ShellCheck` clean.
-- **Commits**: Small, atomic, and logically separated (e.g., `feat(wifi): ...`).
-- **Dependencies**: The core orchestration relies on zero external dependencies (`jq`, `curl`, etc., are avoided to guarantee offline operation).
-- **Execution Context**: Do not use `SCRIPT_DIR="$(pwd)"` dynamically inside modules. Always source `common/context.sh` and utilize pre-defined paths like `INSTALL_ROOT` and `ASSETS_DIR`.
-
----
-
-## 🗺 Future Roadmap
-
-- **FaceTime HD Camera** (Priority 1)
-- **Suspend / Resume improvements**
-- **Battery & Power Management**
-- **Thermal tuning**
-- **Automatic firmware extraction from macOS**
-- **Improved diagnostics**
-- **Better recovery tooling**
-
----
-
-## 📜 License
-
-This project is licensed under the MIT License.
+This project is licensed under the MIT License. Feel free to use and modify it!

@@ -1,3 +1,5 @@
+# shellcheck shell=bash
+# shellcheck disable=SC2034,SC2154
 # checks/03_wifi.sh
 
 check_id="wifi"

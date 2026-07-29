@@ -1,3 +1,5 @@
+# shellcheck shell=bash
+# shellcheck disable=SC2034,SC2154
 # checks/05_touchbar.sh
 
 check_id="touchbar"
@@ -15,12 +17,16 @@ run_check() {
     local modules_loaded=0
 
     # 1. Check if package is installed
-    if dpkg -l | grep -q "^ii[[:space:]]*${TOUCHBAR_PKG_NAME}[[:space:]]"; then
+    if dpkg-query -W -f='${Status}\n' "${TOUCHBAR_PKG_NAME}" 2>/dev/null | grep -q "installed"; then
         pkg_installed=1
     fi
 
     # 2. Check if DKMS module is registered
-    if dkms status | grep -q "${TOUCHBAR_PKG_NAME}"; then
+    # DKMS module name usually doesn't have the -dkms suffix
+    local dkms_name="${TOUCHBAR_PKG_NAME%-dkms}"
+    local dkms_output
+    dkms_output="$(dkms status 2>&1)"
+    if echo "${dkms_output}" | grep -q "${dkms_name}"; then
         dkms_registered=1
     fi
 
@@ -48,7 +54,7 @@ run_check() {
         fi
     fi
 
-    RESULT_MESSAGE="Package missing, DKMS failed, or device unavailable."
+    RESULT_MESSAGE="Package missing, DKMS failed, or device unavailable. (pkg=${pkg_installed}, dkms=${dkms_registered}, mods=${modules_loaded}, dkms_name=${dkms_name}, dkms_status=${dkms_output})"
     RESULT_RECOMMENDATION="Run repair.sh --touchbar"
     RESULT_REPAIR_ID="touchbar"
     return 2

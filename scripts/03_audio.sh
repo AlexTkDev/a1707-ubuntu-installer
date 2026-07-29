@@ -37,7 +37,7 @@ local cache_dir="/var/cache/mbp-cirrus-audio-dkms/hda-src"
 local cache_file="${cache_dir}/hda-${kernel_ver}.tar.gz"
 local asset_cache="${ASSETS_DIR}/audio/hda-${kernel_ver}.tar.gz"
 
-if [[ -f "${asset_cache}" && ! -f "${cache_file}" ]]; then
+if [[ -f "${asset_cache}" ]]; then
     log_info "Pre-seeding offline Cirrus HDA source cache (${kernel_ver})..."
     run_cmd mkdir -p "${cache_dir}"
     run_cmd cp "${asset_cache}" "${cache_file}"
