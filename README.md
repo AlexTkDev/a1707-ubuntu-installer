@@ -1,13 +1,13 @@
-# MacBook Pro Linux Support Framework
+# Ubuntu Installer for MacBook Pro 15" 2017 (A1707 / MacBookPro14,3)
 
 ![Ubuntu](https://img.shields.io/badge/Ubuntu-26.04-orange?logo=ubuntu)
 ![Bash](https://img.shields.io/badge/Bash-5+-4EAA25?logo=gnu-bash)
 ![ShellCheck](https://img.shields.io/badge/ShellCheck-Passing-brightgreen)
 ![License](https://img.shields.io/badge/License-MIT-blue)
 ![Release](https://img.shields.io/badge/Release-v1.0.0-blue)
-![CI](https://github.com/example/macbookpro14-linux-support/actions/workflows/ci.yml/badge.svg)
+![CI](https://github.com/AlexTkDev/a1707-ubuntu-installer/actions/workflows/ci.yml/badge.svg)
 
-A production-ready, highly modular offline installer and recovery framework designed to bring full hardware support to Intel MacBook Pros running Ubuntu (and other Debian-based distributions).
+**The goal of this project is simple: after reinstalling Ubuntu on my MacBook Pro A1707, I want to restore full hardware functionality with a single command.**
 
 > [!CAUTION]
 > **Disclaimer**  
@@ -40,7 +40,7 @@ graph TD
 
 ## 💻 Supported Hardware
 
-This framework is currently targeted and validated for **MacBookPro14,3** (15-inch, 2017).
+**This project is designed, tested and maintained exclusively for the MacBook Pro 15" 2017 (A1707 / MacBookPro14,3).**
 
 | Component      | Status | Notes                       |
 | -------------- | ------ | --------------------------- |
@@ -48,10 +48,8 @@ This framework is currently targeted and validated for **MacBookPro14,3** (15-in
 | Audio CS8409   | ✅      | DKMS package                |
 | Touch Bar (T1) | ✅      | DKMS package                |
 | Bluetooth      | ✅      | Native kernel support       |
-| Camera         | ⏳      | Planned                     |
-| Suspend/Resume | ⚠️     | Experimental                |
 
-> **Note:** Do not run this installer on untested Mac models unless you create a specific platform definition file.
+Although the architecture is modular and can be adapted to other Intel Mac models, **only A1707 is officially supported**.
 
 ---
 
@@ -139,7 +137,7 @@ A dedicated purge script designed to permanently remove all framework configurat
 ## ⚙️ Extending the Framework
 
 ### Adding a New Platform
-To add support for a new Mac model:
+The platform abstraction exists to keep the installer modular. Other models are **not supported**, but advanced users may adapt the framework by creating their own platform definition.
 1. Create `platforms/macmodelX-Y.sh`.
 2. Define standard hardware variables (`PLATFORM_ID`, `BOARD_ID`, `WIFI_CHIP`, `AUDIO_PKG_NAME`, etc.).
 3. The orchestrator will dynamically load this definition based on `/sys/class/dmi/id/board_name`.
@@ -186,12 +184,15 @@ Migrations live in `migrations/`. They exist to seamlessly upgrade the state of 
 
 ---
 
-## 🗺 Roadmap
+## 🗺 Future Roadmap
 
-Future enhancements currently planned:
-- FacetimeHD Camera support module (requires complex firmware extraction integration).
-- Native Suspend/Resume hibernation patching.
-- Automated system-level GRUB parameter tuning (e.g., `intel_iommu=on`).
+- **FaceTime HD Camera** (Priority 1)
+- **Suspend / Resume improvements**
+- **Battery & Power Management**
+- **Thermal tuning**
+- **Automatic firmware extraction from macOS**
+- **Improved diagnostics**
+- **Better recovery tooling**
 
 ---
 
