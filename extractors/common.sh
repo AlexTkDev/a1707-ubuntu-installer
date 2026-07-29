@@ -35,7 +35,9 @@ mount_macos() {
             if command -v apfs-fuse >/dev/null 2>&1; then
                 run_cmd apfs-fuse "${dev_path}" "${MACOS_MOUNT_POINT}"
             else
-                log_error "Failed to mount APFS. Ensure apfs-fuse is installed or kernel supports APFS."
+                log_error "Failed to mount APFS."
+                log_error "Please run: sudo apt-get install apfs-dkms"
+                log_error "Then try again."
                 return 1
             fi
         fi
