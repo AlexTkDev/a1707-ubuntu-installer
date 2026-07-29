@@ -42,6 +42,7 @@ PHASES=(
     "02_wifi"
     "03_audio"
     "04_touchbar"
+    "07_camera"
     "05_validation"
     "06_cleanup"
 )

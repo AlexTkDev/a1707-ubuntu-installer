@@ -26,9 +26,10 @@ while [[ $# -gt 0 ]]; do
         --wifi) TARGET_REPAIRS+=("wifi_symlink" "wifi_firmware"); shift ;;
         --audio) TARGET_REPAIRS+=("audio"); shift ;;
         --touchbar) TARGET_REPAIRS+=("touchbar"); shift ;;
+        --camera) TARGET_REPAIRS+=("camera"); shift ;;
         *)
             log_error "Unknown argument: $1"
-            echo "Usage: $0 [--all | --dry-run | --repair-id ID | --wifi | --audio | --touchbar]"
+            echo "Usage: $0 [--all | --dry-run | --repair-id ID | --wifi | --audio | --touchbar | --camera]"
             exit 1
             ;;
     esac

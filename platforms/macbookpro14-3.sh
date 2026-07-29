@@ -23,9 +23,15 @@ AUDIO_PKG_NAME="mbp-cirrus-audio-dkms"
 AUDIO_PKG_FILE="mbp-cirrus-audio-dkms_1.0-1_all.deb"
 AUDIO_PKG_VERSION="1.0-1"
 
-# Touch Bar / Camera
-TOUCHBAR_SUPPORTED=1
-TOUCHBAR_PKG_NAME="mbp-t1-touchbar-dkms"
-TOUCHBAR_PKG_FILE="mbp-t1-touchbar-dkms_1.0-2_all.deb"
-TOUCHBAR_MODULES=("applespi" "apple_ib_tb")
-CAMERA_DRIVER="facetimehd"
+# Touch Bar
+export TOUCHBAR_SUPPORTED=1
+export TOUCHBAR_PKG_NAME="mbp-t1-touchbar-dkms"
+export TOUCHBAR_PKG_FILE="mbp-t1-touchbar-dkms_1.0-2_all.deb"
+export TOUCHBAR_MODULES=("applespi" "apple_ib_tb")
+
+# Camera (FaceTime HD)
+export CAMERA_SUPPORTED=1
+export CAMERA_DRIVER="facetimehd"
+export CAMERA_FIRMWARE="firmware.bin"
+export CAMERA_PKG_NAME="facetimehd-dkms"
+export CAMERA_PKG_FILE="facetimehd-dkms_1.0-1_all.deb"
