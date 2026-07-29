@@ -112,7 +112,7 @@ for rid in "${!UNIQUE_FAILS[@]}"; do
     fi
     
     # Transaction Start
-    local repair_success=0
+    repair_success=0
     
     log_debug "Running repair implementation..."
     if repair; then

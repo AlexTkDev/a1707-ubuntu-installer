@@ -3,7 +3,8 @@
 # Centralized execution context.
 
 if [[ -z "${INSTALL_ROOT:-}" ]]; then
-    export INSTALL_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+    INSTALL_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+    export INSTALL_ROOT
 fi
 
 export ASSETS_DIR="${INSTALL_ROOT}/assets"
@@ -21,4 +22,5 @@ export INSTALLER_MANIFEST="${STATE_DIR}/installer.manifest"
 export BACKUP_DIR="/var/backups/macbookpro14-linux-support"
 export LOG_FILE="/var/log/macbookpro14-installer.log"
 
-export INSTALLER_VERSION="$(cat "${INSTALL_ROOT}/VERSION")"
+INSTALLER_VERSION="$(cat "${INSTALL_ROOT}/VERSION")"
+export INSTALLER_VERSION
