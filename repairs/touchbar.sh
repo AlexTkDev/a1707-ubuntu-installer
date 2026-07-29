@@ -1,10 +1,18 @@
 # repairs/touchbar.sh
 
 REPAIR_ID="touchbar"
-REPAIR_DESCRIPTION="Installs offline Touch Bar DKMS package."
+REPAIR_DESCRIPTION="Reinstalls offline Touch Bar DKMS package."
+
+source "${SCRIPT_DIR}/platforms/macbookpro14-3.sh"
+source "${SCRIPT_DIR}/checks/05_touchbar.sh"
 
 repair() {
-    local deb_pkg="${SCRIPT_DIR}/assets/packages/mbp-t1-touchbar-dkms_1.0-2_all.deb"
+    if [[ "${TOUCHBAR_SUPPORTED:-0}" -eq 0 ]]; then
+        log_info "Touch Bar unsupported. Nothing to repair."
+        return 0
+    fi
+
+    local deb_pkg="${SCRIPT_DIR}/assets/packages/${TOUCHBAR_PKG_FILE}"
     
     if [[ ! -f "${deb_pkg}" ]]; then
         log_error "Touch Bar package not found: ${deb_pkg}"
@@ -16,9 +24,12 @@ repair() {
 }
 
 repair_validate() {
-    # Check if module is installed (status might show applespi or appletb depending on package)
-    # The package name usually maps to the primary module or we can just check dpkg
-    if dpkg -l | grep -q "mbp-t1-touchbar-dkms"; then
+    # Reuse check logic
+    if run_check; then
+        return 0
+    fi
+    # If package installed but module inactive, consider it a WARN (1), which is acceptable
+    if [[ $? -eq 1 ]]; then
         return 0
     fi
     return 1
@@ -26,5 +37,5 @@ repair_validate() {
 
 repair_rollback() {
     log_warn "Removing failed touchbar dkms."
-    run_cmd apt-get remove -y mbp-t1-touchbar-dkms || true
+    run_cmd apt-get remove -y "${TOUCHBAR_PKG_NAME}" || true
 }

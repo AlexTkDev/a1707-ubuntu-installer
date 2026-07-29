@@ -25,4 +25,7 @@ AUDIO_PKG_VERSION="1.0-1"
 
 # Touch Bar / Camera
 TOUCHBAR_SUPPORTED=1
+TOUCHBAR_PKG_NAME="mbp-t1-touchbar-dkms"
+TOUCHBAR_PKG_FILE="mbp-t1-touchbar-dkms_1.0-2_all.deb"
+TOUCHBAR_MODULES=("applespi" "apple_ib_tb")
 CAMERA_DRIVER="facetimehd"
