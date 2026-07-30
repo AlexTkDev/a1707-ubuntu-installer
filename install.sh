@@ -18,7 +18,7 @@ SKIP_PHASES=()
 START_PHASE=""
 LIST_PHASES=0
 
-export APPLY_GNOME_SETTINGS=1
+export APPLY_GNOME_SETTINGS=0
 
 while [[ $# -gt 0 ]]; do
     case "$1" in
@@ -30,11 +30,11 @@ while [[ $# -gt 0 ]]; do
         --from-phase) START_PHASE="$2"; shift 2 ;;
         --skip) SKIP_PHASES+=("$2"); shift 2 ;;
         --list-phases) LIST_PHASES=1; shift ;;
-        --without-gnome-settings|--without_user_gnome_settings_backup|--no-gnome-settings|--skip-gnome-settings)
-            export APPLY_GNOME_SETTINGS=0; shift ;;
+        --with-gnome-settings|--with_user_gnome_settings_backup|--with-user-gnome-settings|--gnome-settings)
+            export APPLY_GNOME_SETTINGS=1; shift ;;
         *)
             log_error "Unknown argument: $1"
-            echo "Usage: $0 [--dry-run | --verbose | --debug | --quiet | --phase NAME | --from-phase NAME | --skip NAME | --list-phases | --without-gnome-settings]"
+            echo "Usage: $0 [--dry-run | --verbose | --debug | --quiet | --phase NAME | --from-phase NAME | --skip NAME | --list-phases | --with-gnome-settings]"
             exit 1
             ;;
     esac

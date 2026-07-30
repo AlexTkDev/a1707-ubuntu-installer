@@ -38,10 +38,10 @@ sudo ./install.sh
 ### Useful Options
 - `--phase NAME` : Run only a specific part (e.g., `sudo ./install.sh --phase audio`).
 - `--skip NAME` : Skip a specific part.
-- `--without-gnome-settings` : Skip restoring the author's custom GNOME keybindings & desktop settings.
+- `--with-gnome-settings` : Apply the author's custom macOS-like GNOME keybindings & desktop settings.
 - `--verbose` or `--debug` : Get more detailed output if something goes wrong.
 
-> **Note on Custom Keybindings:** By default, the installer applies the author's personal GNOME shortcuts tuned for macOS muscle memory (such as `Command` key shortcuts like `Cmd+C` / `Cmd+V` instead of standard Ctrl, and `<Shift><Alt>Space` for input source switching). If you prefer standard Ubuntu keybindings, run the installer with `--without-gnome-settings`.
+> **Note on Custom Keybindings:** By default, the installer leaves standard Ubuntu keybindings intact. However, if you want the author's personal GNOME shortcuts tuned for macOS muscle memory (such as `Command` key shortcuts like `Cmd+C` / `Cmd+V` instead of standard Ctrl, and `<Shift><Alt>Space` for input source switching), you can run the installer with `--with-gnome-settings`.
 
 <details>
 <summary><b>Example Terminal Output</b></summary>

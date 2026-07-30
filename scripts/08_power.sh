@@ -75,7 +75,7 @@ EOF
 fi
 
 # 4. Restore custom user GNOME settings & keyboard shortcuts if enabled
-if [[ "${APPLY_GNOME_SETTINGS:-1}" -eq 1 ]]; then
+if [[ "${APPLY_GNOME_SETTINGS:-0}" -eq 1 ]]; then
     GNOME_SETTINGS_FILE="${ASSETS_DIR}/user_gnome_settings.dconf"
     if [[ -f "${GNOME_SETTINGS_FILE}" ]]; then
         log_info "Applying custom GNOME keybindings & user settings..."
@@ -94,7 +94,7 @@ if [[ "${APPLY_GNOME_SETTINGS:-1}" -eq 1 ]]; then
         fi
     fi
 else
-    log_info "Skipping custom GNOME user settings restoration (--without-gnome-settings specified)."
+    log_info "Skipping custom GNOME user settings restoration (pass --with-gnome-settings to apply author's keybindings)."
 fi
 
 log_success "Power & Thermal Management phase completed."
