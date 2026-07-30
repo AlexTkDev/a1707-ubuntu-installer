@@ -33,7 +33,13 @@ if run_check; then
     fi
 fi
 
-log_info "Proceeding with Touch Bar package installation..."
+log_info "Proceeding with Touch Bar and Touchpad driver installation..."
+
+# Install X11/libinput touchpad driver if missing
+if ! dpkg-query -W -f='${Status}\n' xserver-xorg-input-libinput 2>/dev/null | grep -q "installed"; then
+    log_info "Installing xserver-xorg-input-libinput for optimal touchpad behavior..."
+    run_cmd apt-get install -y xserver-xorg-input-libinput || log_warn "Could not install xserver-xorg-input-libinput."
+fi
 
 if ! install_dkms_package "${TOUCHBAR_PKG_NAME}" "${TOUCHBAR_PKG_FILE}"; then
     log_fatal "Touch Bar deployment failed during package installation."

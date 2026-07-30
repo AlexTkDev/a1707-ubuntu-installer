@@ -17,7 +17,7 @@ This installer is specifically designed and tested for the **MacBook Pro 15" 201
 | -------------- | ------ | --------------------------- |
 | Wi-Fi BCM43602 | ✅      | Installs correct firmware   |
 | Audio CS8409   | ✅      | Installs DKMS driver        |
-| Touch Bar (T1) | ✅      | Installs DKMS driver        |
+| Touch Bar & Touchpad | ✅      | Installs DKMS driver & libinput input driver |
 | Camera         | ✅      | FaceTime HD DKMS & firmware |
 | Bluetooth      | ✅      | Native kernel support       |
 
