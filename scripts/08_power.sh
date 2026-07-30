@@ -84,10 +84,11 @@ if [[ "${APPLY_GNOME_SETTINGS:-1}" -eq 1 ]]; then
         
         if [[ -n "${TARGET_USER}" && "${TARGET_USER}" != "root" && -n "${TARGET_UID}" ]]; then
             DBUS_BUS="/run/user/${TARGET_UID}/bus"
+            # shellcheck disable=SC2024
             if [[ -S "${DBUS_BUS}" ]]; then
-                cat "${GNOME_SETTINGS_FILE}" | sudo -u "${TARGET_USER}" DBUS_SESSION_BUS_ADDRESS="unix:path=${DBUS_BUS}" dconf load /org/gnome/ 2>/dev/null || true
+                sudo -u "${TARGET_USER}" DBUS_SESSION_BUS_ADDRESS="unix:path=${DBUS_BUS}" dconf load /org/gnome/ < "${GNOME_SETTINGS_FILE}" 2>/dev/null || true
             else
-                cat "${GNOME_SETTINGS_FILE}" | sudo -u "${TARGET_USER}" dconf load /org/gnome/ 2>/dev/null || true
+                sudo -u "${TARGET_USER}" dconf load /org/gnome/ < "${GNOME_SETTINGS_FILE}" 2>/dev/null || true
             fi
             log_success "Custom GNOME keybindings & user settings restored for user '${TARGET_USER}'."
         fi
