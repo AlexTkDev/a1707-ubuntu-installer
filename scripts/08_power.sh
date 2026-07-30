@@ -16,7 +16,7 @@ log_info "Starting Power & Thermal Management deployment phase..."
 # 1. Install TLP for power optimization (Intel Skylake/Kaby Lake)
 log_info "Ensuring TLP power management packages are installed..."
 if ! dpkg-query -W -f='${Status}\n' tlp 2>/dev/null | grep -q "installed"; then
-    tlp_deb="$(ls "${ASSETS_DIR}/packages/tlp_"*.deb 2>/dev/null | head -n1 || true)"
+    tlp_deb="$(find "${ASSETS_DIR}/packages" -maxdepth 1 -name "tlp_*.deb" -print -quit 2>/dev/null || true)"
     if [[ -n "${tlp_deb}" && -f "${tlp_deb}" ]]; then
         run_cmd dpkg -i "${ASSETS_DIR}/packages/tlp"*.deb 2>/dev/null || run_cmd apt-get install -y "${tlp_deb}" || true
     else
@@ -34,7 +34,7 @@ fi
 # 2. Install mbpfan for optimal fan control
 log_info "Ensuring mbpfan fan controller is installed..."
 if ! dpkg-query -W -f='${Status}\n' mbpfan 2>/dev/null | grep -q "installed"; then
-    mbpfan_deb="$(ls "${ASSETS_DIR}/packages/mbpfan_"*.deb 2>/dev/null | head -n1 || true)"
+    mbpfan_deb="$(find "${ASSETS_DIR}/packages" -maxdepth 1 -name "mbpfan_*.deb" -print -quit 2>/dev/null || true)"
     if [[ -n "${mbpfan_deb}" && -f "${mbpfan_deb}" ]]; then
         run_cmd dpkg -i "${mbpfan_deb}" 2>/dev/null || run_cmd apt-get install -y "${mbpfan_deb}" || true
     else
