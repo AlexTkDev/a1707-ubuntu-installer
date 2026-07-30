@@ -43,6 +43,7 @@ PHASES=(
     "03_audio"
     "04_touchbar"
     "07_camera"
+    "08_power"
     "05_validation"
     "06_cleanup"
 )
