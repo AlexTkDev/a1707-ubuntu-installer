@@ -58,16 +58,17 @@ alex@ubuntu:~/a1707-ubuntu-installer$ sudo ./install.sh
 [2026-07-30T12:50:05+03:00] [INFO] Phase: prerequisites ... [SUCCESS] Prerequisites met.
 [2026-07-30T12:50:05+03:00] [INFO] Phase: wifi          ... [SUCCESS] Wi-Fi firmware installed.
 [2026-07-30T12:50:06+03:00] [INFO] Phase: audio         ... [SUCCESS] Package mbp-cirrus-audio-dkms installed.
-[2026-07-30T12:50:08+03:00] [INFO] Phase: touchbar      ... [SUCCESS] Touch Bar package verified.
-[2026-07-30T12:50:09+03:00] [INFO] Phase: camera        ... [SUCCESS] Camera module installation phase complete.
-[2026-07-30T12:50:14+03:00] [INFO] Phase: validation    ... [SUCCESS] Kernel module dependencies updated.
-[2026-07-30T12:50:14+03:00] [INFO] Phase: cleanup       ... [SUCCESS] Cleanup complete.
-[2026-07-30T12:50:14+03:00] [INFO] ==================================================
-[2026-07-30T12:50:14+03:00] [INFO] Installer Session Completed
-[2026-07-30T12:50:14+03:00] [INFO] Elapsed Time  : 6 seconds
-[2026-07-30T12:50:14+03:00] [INFO] Exit Code     : 0
-[2026-07-30T12:50:14+03:00] [WARN] Total Warnings: 4
-[2026-07-30T12:50:14+03:00] [INFO] Total Errors  : 0
+[2026-07-30T13:41:13+03:00] [INFO] Phase: touchbar      ... [SUCCESS] Touch Bar package verified.
+[2026-07-30T13:41:14+03:00] [INFO] Phase: camera        ... [SUCCESS] Camera module installation phase complete.
+[2026-07-30T13:41:15+03:00] [INFO] Phase: power         ... [SUCCESS] Power & Thermal Management phase completed.
+[2026-07-30T13:41:18+03:00] [INFO] Phase: validation    ... [SUCCESS] Kernel module dependencies updated.
+[2026-07-30T13:41:20+03:00] [INFO] Phase: cleanup       ... [SUCCESS] Cleanup complete.
+[2026-07-30T13:41:20+03:00] [INFO] ==================================================
+[2026-07-30T13:41:20+03:00] [INFO] Installer Session Completed
+[2026-07-30T13:41:20+03:00] [INFO] Elapsed Time  : 5 seconds
+[2026-07-30T13:41:20+03:00] [INFO] Exit Code     : 0
+[2026-07-30T13:41:20+03:00] [WARN] Total Warnings: 1
+[2026-07-30T13:41:20+03:00] [INFO] Total Errors  : 0
 [2026-07-30T12:50:14+03:00] [INFO] ==================================================
 ```
 
