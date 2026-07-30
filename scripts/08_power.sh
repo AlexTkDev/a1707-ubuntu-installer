@@ -74,5 +74,27 @@ EOF
     log_success "Touch Bar T1 USB sleep reset hook deployed to ${SLEEP_HOOK_FILE}."
 fi
 
+# 4. Restore custom user GNOME settings & keyboard shortcuts if enabled
+if [[ "${APPLY_GNOME_SETTINGS:-1}" -eq 1 ]]; then
+    GNOME_SETTINGS_FILE="${ASSETS_DIR}/user_gnome_settings.dconf"
+    if [[ -f "${GNOME_SETTINGS_FILE}" ]]; then
+        log_info "Applying custom GNOME keybindings & user settings..."
+        TARGET_USER="${SUDO_USER:-$(logname 2>/dev/null || echo "${USER}")}"
+        TARGET_UID="$(id -u "${TARGET_USER}" 2>/dev/null || echo "")"
+        
+        if [[ -n "${TARGET_USER}" && "${TARGET_USER}" != "root" && -n "${TARGET_UID}" ]]; then
+            DBUS_BUS="/run/user/${TARGET_UID}/bus"
+            if [[ -S "${DBUS_BUS}" ]]; then
+                sudo -u "${TARGET_USER}" DBUS_SESSION_BUS_ADDRESS="unix:path=${DBUS_BUS}" dconf load /org/gnome/ < "${GNOME_SETTINGS_FILE}" 2>/dev/null || true
+            else
+                sudo -u "${TARGET_USER}" dconf load /org/gnome/ < "${GNOME_SETTINGS_FILE}" 2>/dev/null || true
+            fi
+            log_success "Custom GNOME keybindings & user settings restored for user '${TARGET_USER}'."
+        fi
+    fi
+else
+    log_info "Skipping custom GNOME user settings restoration (--without-gnome-settings specified)."
+fi
+
 log_success "Power & Thermal Management phase completed."
 return 0

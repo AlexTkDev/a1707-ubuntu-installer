@@ -38,6 +38,7 @@ sudo ./install.sh
 ### Useful Options
 - `--phase NAME` : Run only a specific part (e.g., `sudo ./install.sh --phase audio`).
 - `--skip NAME` : Skip a specific part.
+- `--without-gnome-settings` : Skip restoring custom user GNOME keybindings & desktop settings.
 - `--verbose` or `--debug` : Get more detailed output if something goes wrong.
 
 <details>
