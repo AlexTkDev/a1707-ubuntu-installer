@@ -32,7 +32,7 @@ This installer is specifically designed and tested for the **MacBook Pro 15" 201
 sudo ./install.sh
 ```
 
-3. Once the script finishes, **reboot your laptop**.
+3. Once the script finishes,❗️ **reboot your laptop**. ❗️
 
 ### Useful Options
 - `--phase NAME` : Run only a specific part (e.g., `sudo ./install.sh --phase audio`).
