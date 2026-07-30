@@ -43,7 +43,7 @@ sudo ./install.sh
 <summary><b>Example Terminal Output</b></summary>
 
 ```text
-alex@Alex-MacBook:~/Документы/a1707-ubuntu-installer$ sudo ./install.sh
+alex@Alex-MacBook:~/a1707-ubuntu-installer$ sudo ./install.sh
 [2026-07-30T12:50:05+03:00] [INFO] ==================================================
 [2026-07-30T12:50:05+03:00] [INFO] Installer Session Started
 [2026-07-30T12:50:05+03:00] [INFO] Timestamp     : 2026-07-30T12:50:05+03:00
