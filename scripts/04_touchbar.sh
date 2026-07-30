@@ -38,7 +38,12 @@ log_info "Proceeding with Touch Bar and Touchpad driver installation..."
 # Install X11/libinput touchpad driver if missing
 if ! dpkg-query -W -f='${Status}\n' xserver-xorg-input-libinput 2>/dev/null | grep -q "installed"; then
     log_info "Installing xserver-xorg-input-libinput for optimal touchpad behavior..."
-    run_cmd apt-get install -y xserver-xorg-input-libinput || log_warn "Could not install xserver-xorg-input-libinput."
+    libinput_deb="$(ls "${ASSETS_DIR}/packages/xserver-xorg-input-libinput_"*.deb 2>/dev/null | head -n1 || true)"
+    if [[ -n "${libinput_deb}" && -f "${libinput_deb}" ]]; then
+        run_cmd dpkg -i "${ASSETS_DIR}/packages/xserver-xorg"* "${ASSETS_DIR}/packages/xcvt"* 2>/dev/null || run_cmd apt-get install -y "${libinput_deb}" || true
+    else
+        run_cmd apt-get install -y xserver-xorg-input-libinput || log_warn "Could not install xserver-xorg-input-libinput."
+    fi
 fi
 
 if ! install_dkms_package "${TOUCHBAR_PKG_NAME}" "${TOUCHBAR_PKG_FILE}"; then
