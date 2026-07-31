@@ -1,16 +1,19 @@
 [Ptyxis]
 audible-bell=false
-default-columns=uint32 100
+default-columns=uint32 110
 default-profile-uuid='610f4ad57c30991010c63a5b6a6a439d'
 default-rows=uint32 30
+font-name='Monospace 10'
 interface-style='dark'
 profile-uuids=['610f4ad57c30991010c63a5b6a6a439d']
 restore-session=false
 restore-window-size=false
+use-system-font=false
 visual-bell=false
-window-size=(uint32 100, uint32 30)
+window-size=(uint32 110, uint32 30)
 
 [Ptyxis/Profiles/610f4ad57c30991010c63a5b6a6a439d]
+cell-height-scale=1.0
 palette='Vs Code'
 
 [Ptyxis/Shortcuts]
@@ -30,7 +33,7 @@ tab-overview='<Control>o'
 undo-close-tab='<Shift><Control>t'
 
 [control-center]
-last-panel='system'
+last-panel='privacy'
 window-state=(980, 640, false)
 
 [desktop/a11y/magnifier]
@@ -81,9 +84,12 @@ icon-theme='Yaru-dark'
 show-battery-percentage=true
 
 [desktop/notifications]
-application-children=['update-manager', 'org-gnome-ptyxis', 'google-chrome', 'apport-gtk', 'org-gnome-tweaks', 'gnome-power-panel']
+application-children=['update-manager', 'org-gnome-ptyxis', 'google-chrome', 'apport-gtk', 'org-gnome-tweaks', 'gnome-power-panel', 'antigravity-ide', 'org-gnome-networkdisplays']
 show-banners=true
 show-in-lock-screen=false
+
+[desktop/notifications/application/antigravity-ide]
+application-id='antigravity-ide.desktop'
 
 [desktop/notifications/application/apport-gtk]
 application-id='apport-gtk.desktop'
@@ -110,6 +116,9 @@ enable=false
 
 [desktop/notifications/application/org-gnome-nautilus]
 enable=false
+
+[desktop/notifications/application/org-gnome-networkdisplays]
+application-id='org.gnome.NetworkDisplays.desktop'
 
 [desktop/notifications/application/org-gnome-ptyxis]
 application-id='org.gnome.Ptyxis.desktop'
@@ -171,10 +180,14 @@ migrated-gtk-settings=true
 
 [nautilus/window-state]
 initial-size=(890, 550)
+initial-size-file-chooser=(890, 550)
 
 [nm-applet/eap/9e9be6ab-2c3f-4e18-bfaa-d734e4ab8698]
 ignore-ca-cert=false
 ignore-phase2-ca-cert=false
+
+[portal/filechooser/com.google.Chrome]
+last-folder-path='/home/alex/Изображения'
 
 [settings-daemon/plugins/color]
 night-light-schedule-automatic=false
@@ -186,19 +199,31 @@ sleep-inactive-ac-type='nothing'
 sleep-inactive-battery-type='nothing'
 
 [shell]
-app-picker-layout=[{'firmware-updater_firmware-updater.desktop': <{'position': <0>}>, 'org.gnome.Calculator.desktop': <{'position': <1>}>, 'update-manager.desktop': <{'position': <2>}>, 'org.gnome.clocks.desktop': <{'position': <3>}>, 'net.nokyan.Resources.desktop': <{'position': <4>}>, 'org.gnome.TextEditor.desktop': <{'position': <5>}>, 'desktop-security-center_desktop-security-center.desktop': <{'position': <6>}>, 'gnome-language-selector.desktop': <{'position': <7>}>, 'org.gnome.Characters.desktop': <{'position': <8>}>, 'org.gnome.Yelp.desktop': <{'position': <9>}>, 'org.gnome.Logs.desktop': <{'position': <10>}>, 'org.gnome.Sysprof.desktop': <{'position': <11>}>, 'nm-connection-editor.desktop': <{'position': <12>}>, 'org.gnome.DiskUtility.desktop': <{'position': <13>}>, 'org.gnome.baobab.desktop': <{'position': <14>}>, 'org.gnome.Loupe.desktop': <{'position': <15>}>, 'org.gnome.seahorse.Application.desktop': <{'position': <16>}>, 'org.gnome.Papers.desktop': <{'position': <17>}>, 'org.gnome.font-viewer.desktop': <{'position': <18>}>, 'org.gnome.tweaks.desktop': <{'position': <19>}>}]
+app-picker-layout=[{'firmware-updater_firmware-updater.desktop': <{'position': <0>}>, 'org.gnome.Calculator.desktop': <{'position': <1>}>, 'update-manager.desktop': <{'position': <2>}>, 'org.gnome.clocks.desktop': <{'position': <3>}>, 'net.nokyan.Resources.desktop': <{'position': <4>}>, 'org.gnome.TextEditor.desktop': <{'position': <5>}>, 'desktop-security-center_desktop-security-center.desktop': <{'position': <6>}>, 'gnome-language-selector.desktop': <{'position': <7>}>, 'org.gnome.Characters.desktop': <{'position': <8>}>, 'org.gnome.Yelp.desktop': <{'position': <9>}>, 'org.gnome.Logs.desktop': <{'position': <10>}>, 'org.gnome.Sysprof.desktop': <{'position': <11>}>, 'nm-connection-editor.desktop': <{'position': <12>}>, 'org.gnome.DiskUtility.desktop': <{'position': <13>}>, 'org.gnome.baobab.desktop': <{'position': <14>}>, 'org.gnome.Loupe.desktop': <{'position': <15>}>, 'org.gnome.seahorse.Application.desktop': <{'position': <16>}>, 'org.gnome.Papers.desktop': <{'position': <17>}>, 'org.gnome.font-viewer.desktop': <{'position': <18>}>, 'org.gnome.tweaks.desktop': <{'position': <19>}>, 'firefox_firefox.desktop': <{'position': <20>}>, 'antigravity-ide.desktop': <{'position': <21>}>}]
 disabled-extensions=['tiling-assistant@ubuntu.com']
 enabled-extensions=['ding@rastersoft.com', 'ubuntu-dock@ubuntu.com', 'snapd-search-provider@canonical.com', 'web-search-provider@ubuntu.com']
-favorite-apps=['google-chrome.desktop', 'org.gnome.Ptyxis.desktop', 'telegram-desktop_telegram-desktop.desktop', 'org.gnome.Nautilus.desktop', 'snap-store_snap-store.desktop', 'org.gnome.Settings.desktop']
+favorite-apps=['google-chrome.desktop', 'antigravity-ide.desktop', 'org.gnome.Ptyxis.desktop', 'telegram-desktop_telegram-desktop.desktop', 'org.gnome.Nautilus.desktop', 'snap-store_snap-store.desktop', 'org.gnome.Settings.desktop']
 last-selected-power-profile='performance'
 welcome-dialog-last-shown-version='50.1'
 
+[shell/extensions/appindicator]
+icon-brightness=0.0
+icon-contrast=0.0
+icon-opacity=240
+icon-saturation=0.0
+icon-size=0
+
 [shell/extensions/dash-to-dock]
+background-opacity=0.80000000000000004
 dash-max-icon-size=32
 dock-fixed=false
 dock-position='BOTTOM'
 extend-height=false
+height-fraction=0.90000000000000002
 multi-monitor=true
+preferred-monitor=-2
+preferred-monitor-by-connector='eDP-1'
+running-indicator-style='DOTS'
 show-mounts=true
 show-mounts-network=false
 show-mounts-only-mounted=true
