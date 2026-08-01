@@ -1,7 +1,7 @@
 [apps/update-manager]
 first-run=false
-launch-count=6
-launch-time=int64 1785423497
+launch-count=7
+launch-time=int64 1785513838
 show-details=true
 window-height=400
 window-width=593
@@ -14,7 +14,7 @@ release-check-time=uint32 1785348400
 
 [net/nokyan/Resources]
 is-maximized=false
-last-viewed-page='cpu'
+last-viewed-page='applications'
 show-logical-cpus=true
 window-height=900
 window-width=1024
@@ -54,7 +54,7 @@ tab-overview='<Control>o'
 undo-close-tab='<Shift><Control>t'
 
 [org/gnome/control-center]
-last-panel='privacy'
+last-panel='keyboard'
 window-state=(980, 640, false)
 
 [org/gnome/desktop/a11y/magnifier]
@@ -98,10 +98,12 @@ accent-color='orange'
 can-change-accels=true
 color-scheme='prefer-dark'
 cursor-theme='Yaru'
-font-hinting='none'
+font-antialiasing='grayscale'
+font-hinting='slight'
 gtk-key-theme='Default'
 gtk-theme='Yaru-dark'
 icon-theme='Yaru-dark'
+monospace-font-name='JetBrains Mono 11'
 show-battery-percentage=true
 
 [org/gnome/desktop/notifications]
@@ -183,10 +185,16 @@ activate-window-menu=@as []
 switch-input-source=['<Shift><Alt>space']
 switch-input-source-backward=['<Alt>space']
 
+[org/gnome/desktop/wm/preferences]
+button-layout=':minimize,maximize,close'
+resize-with-right-button=true
+
 [org/gnome/evolution-data-server]
 migrated=true
 
 [org/gnome/mutter]
+attach-modal-dialogs=false
+center-new-windows=false
 dynamic-workspaces=true
 edge-tiling=false
 overlay-key=''
@@ -215,15 +223,16 @@ night-light-schedule-automatic=false
 
 [org/gnome/settings-daemon/plugins/power]
 idle-dim=false
+power-saver-profile-on-low-battery=false
 sleep-inactive-ac-timeout=3600
 sleep-inactive-ac-type='nothing'
 sleep-inactive-battery-type='nothing'
 
 [org/gnome/shell]
-app-picker-layout=[{'firmware-updater_firmware-updater.desktop': <{'position': <0>}>, 'org.gnome.Calculator.desktop': <{'position': <1>}>, 'update-manager.desktop': <{'position': <2>}>, 'org.gnome.clocks.desktop': <{'position': <3>}>, 'net.nokyan.Resources.desktop': <{'position': <4>}>, 'org.gnome.TextEditor.desktop': <{'position': <5>}>, 'desktop-security-center_desktop-security-center.desktop': <{'position': <6>}>, 'gnome-language-selector.desktop': <{'position': <7>}>, 'org.gnome.Characters.desktop': <{'position': <8>}>, 'org.gnome.Yelp.desktop': <{'position': <9>}>, 'org.gnome.Logs.desktop': <{'position': <10>}>, 'org.gnome.Sysprof.desktop': <{'position': <11>}>, 'nm-connection-editor.desktop': <{'position': <12>}>, 'org.gnome.DiskUtility.desktop': <{'position': <13>}>, 'org.gnome.baobab.desktop': <{'position': <14>}>, 'org.gnome.Loupe.desktop': <{'position': <15>}>, 'org.gnome.seahorse.Application.desktop': <{'position': <16>}>, 'org.gnome.Papers.desktop': <{'position': <17>}>, 'org.gnome.font-viewer.desktop': <{'position': <18>}>, 'org.gnome.tweaks.desktop': <{'position': <19>}>, 'firefox_firefox.desktop': <{'position': <20>}>, 'antigravity-ide.desktop': <{'position': <21>}>}]
+app-picker-layout=[{'firmware-updater_firmware-updater.desktop': <{'position': <0>}>, 'org.gnome.Calculator.desktop': <{'position': <1>}>, 'update-manager.desktop': <{'position': <2>}>, 'org.gnome.clocks.desktop': <{'position': <3>}>, 'net.nokyan.Resources.desktop': <{'position': <4>}>, 'org.gnome.TextEditor.desktop': <{'position': <5>}>, 'desktop-security-center_desktop-security-center.desktop': <{'position': <6>}>, 'gnome-language-selector.desktop': <{'position': <7>}>, 'org.gnome.Characters.desktop': <{'position': <8>}>, 'org.gnome.Yelp.desktop': <{'position': <9>}>, 'org.gnome.Logs.desktop': <{'position': <10>}>, 'org.gnome.Sysprof.desktop': <{'position': <11>}>, 'nm-connection-editor.desktop': <{'position': <12>}>, 'org.gnome.DiskUtility.desktop': <{'position': <13>}>, 'org.gnome.baobab.desktop': <{'position': <14>}>, 'org.gnome.Loupe.desktop': <{'position': <15>}>, 'org.gnome.seahorse.Application.desktop': <{'position': <16>}>, 'org.gnome.Papers.desktop': <{'position': <17>}>, 'org.gnome.font-viewer.desktop': <{'position': <18>}>, 'org.gnome.tweaks.desktop': <{'position': <19>}>, 'firefox_firefox.desktop': <{'position': <20>}>, 'org.gnome.NetworkDisplays.desktop': <{'position': <21>}>, 'snap-store_snap-store.desktop': <{'position': <22>}>, 'com.mattjakeman.ExtensionManager.desktop': <{'position': <23>}>, 'info.desktop': <{'position': <24>}>, 'steam_steam.desktop': <{'position': <25>}>}]
 disabled-extensions=['tiling-assistant@ubuntu.com']
 enabled-extensions=['ding@rastersoft.com', 'ubuntu-dock@ubuntu.com', 'snapd-search-provider@canonical.com', 'web-search-provider@ubuntu.com']
-favorite-apps=['google-chrome.desktop', 'antigravity-ide.desktop', 'org.gnome.Ptyxis.desktop', 'telegram-desktop_telegram-desktop.desktop', 'org.gnome.Nautilus.desktop', 'snap-store_snap-store.desktop', 'org.gnome.Settings.desktop']
+favorite-apps=['org.gnome.Nautilus.desktop', 'google-chrome.desktop', 'antigravity-ide.desktop', 'org.gnome.Ptyxis.desktop', 'telegram-desktop_telegram-desktop.desktop', 'steam_steam.desktop', 'org.gnome.Settings.desktop']
 last-selected-power-profile='performance'
 welcome-dialog-last-shown-version='50.1'
 
