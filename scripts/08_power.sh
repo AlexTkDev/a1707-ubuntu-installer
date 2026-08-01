@@ -97,5 +97,18 @@ else
     log_info "Skipping custom GNOME user settings restoration (pass --with-gnome-settings to apply author's keybindings)."
 fi
 
+# 5. Disable i915 hotplug polling to fix CPU hogging on A1707
+log_info "Disabling i915 Hot-Plug polling to prevent CPU hogging..."
+I915_CONF="/etc/modprobe.d/i915.conf"
+if [[ ! -f "${I915_CONF}" ]] || ! grep -q "options i915 poll=0" "${I915_CONF}"; then
+    cat <<'EOF' > /tmp/i915.conf.tmp
+# Disable i915 hotplug polling on MacBookPro14,3 (A1707) where eDP is driven by AMD Radeon
+options i915 poll=0
+EOF
+    run_cmd mv /tmp/i915.conf.tmp "${I915_CONF}"
+    record_install "file" "${I915_CONF}" ""
+    log_success "i915 Hot-Plug polling disabled in ${I915_CONF}."
+fi
+
 log_success "Power & Thermal Management phase completed."
 return 0
