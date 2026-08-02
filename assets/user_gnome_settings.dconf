@@ -221,6 +221,14 @@ last-folder-path='/home/alex/Изображения'
 [org/gnome/settings-daemon/plugins/color]
 night-light-schedule-automatic=false
 
+[org/gnome/settings-daemon/plugins/media-keys]
+custom-keybindings=['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/']
+
+[org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0]
+binding='<Shift><Control>equal'
+command='dbus-send --type=method_call --dest=org.gnome.ScreenSaver /org/gnome/ScreenSaver org.gnome.ScreenSaver.Lock\n'
+name='Отключить экран'
+
 [org/gnome/settings-daemon/plugins/power]
 idle-dim=false
 power-saver-profile-on-low-battery=false
@@ -270,6 +278,12 @@ enable-tiling-popup=false
 focus-hint-color='rgb(211,70,21)'
 last-version-installed=54
 tiling-popup-all-workspace=true
+
+[org/gnome/shell/keybindings]
+screenshot=['<Shift><Control>2']
+screenshot-window=['<Shift><Control>3']
+show-screen-recording-ui=['<Shift><Control>5']
+show-screenshot-ui=['<Shift><Control>4']
 
 [org/gnome/system/location]
 enabled=false
