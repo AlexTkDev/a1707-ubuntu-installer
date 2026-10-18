@@ -1,20 +1,21 @@
 [apps/update-manager]
 first-run=false
-launch-count=7
-launch-time=int64 1785513838
+launch-count=18
+launch-time=int64 1790417534
 show-details=true
-window-height=400
+window-height=879
 window-width=593
 
 [com/mattjakeman/ExtensionManager]
 height=1315
 
 [com/ubuntu/update-notifier]
-release-check-time=uint32 1785348400
+no-show-notifications=true
+release-check-time=uint32 1792324292
 
 [net/nokyan/Resources]
 is-maximized=false
-last-viewed-page='applications'
+last-viewed-page='battery-SMP-bq20z451-BAT0'
 show-logical-cpus=true
 window-height=900
 window-width=1024
@@ -53,9 +54,19 @@ select-all='<Control>a'
 tab-overview='<Control>o'
 undo-close-tab='<Shift><Control>t'
 
+[org/gnome/Snapshot]
+is-maximized=false
+window-height=640
+window-width=800
+
 [org/gnome/control-center]
-last-panel='keyboard'
+last-panel='wifi'
 window-state=(980, 640, false)
+
+[org/gnome/deja-dup]
+backend='google'
+periodic-timestamp='2026-09-26T13:25:01.774329+03'
+prompt-check='2026-09-26T13:27:02.212178+03'
 
 [org/gnome/desktop/a11y/magnifier]
 cross-hairs-length=58
@@ -107,7 +118,7 @@ monospace-font-name='JetBrains Mono 11'
 show-battery-percentage=true
 
 [org/gnome/desktop/notifications]
-application-children=['update-manager', 'org-gnome-ptyxis', 'google-chrome', 'apport-gtk', 'org-gnome-tweaks', 'gnome-power-panel', 'antigravity-ide', 'org-gnome-networkdisplays']
+application-children=['update-manager', 'org-gnome-ptyxis', 'google-chrome', 'apport-gtk', 'org-gnome-tweaks', 'gnome-power-panel', 'antigravity-ide', 'org-gnome-networkdisplays', 'grok-bot', 'snapd-desktop-integration-snapd-desktop-integration']
 show-banners=true
 show-in-lock-screen=false
 
@@ -124,6 +135,9 @@ application-id='gnome-power-panel.desktop'
 [org/gnome/desktop/notifications/application/google-chrome]
 application-id='google-chrome.desktop'
 enable=false
+
+[org/gnome/desktop/notifications/application/grok-bot]
+application-id='grok-bot.desktop'
 
 [org/gnome/desktop/notifications/application/io-snapcraft-sessionagent]
 enable=false
@@ -152,6 +166,9 @@ application-id='org.gnome.tweaks.desktop'
 [org/gnome/desktop/notifications/application/org-gnome-zenity]
 enable=false
 
+[org/gnome/desktop/notifications/application/snapd-desktop-integration-snapd-desktop-integration]
+application-id='snapd-desktop-integration_snapd-desktop-integration.desktop'
+
 [org/gnome/desktop/notifications/application/update-manager]
 application-id='update-manager.desktop'
 
@@ -178,7 +195,7 @@ disable-external=true
 sort-order=['org.gnome.Settings.desktop', 'org.gnome.Contacts.desktop', 'org.gnome.Nautilus.desktop']
 
 [org/gnome/desktop/session]
-idle-delay=uint32 900
+idle-delay=uint32 60
 
 [org/gnome/desktop/wm/keybindings]
 activate-window-menu=@as []
@@ -191,6 +208,17 @@ resize-with-right-button=true
 
 [org/gnome/evolution-data-server]
 migrated=true
+
+[org/gnome/file-roller/listing]
+list-mode='as-folder'
+show-path=false
+sort-method='name'
+sort-type='ascending'
+
+[org/gnome/file-roller/ui]
+sidebar-width=200
+window-height=480
+window-width=600
 
 [org/gnome/mutter]
 attach-modal-dialogs=false
@@ -215,8 +243,12 @@ initial-size-file-chooser=(890, 550)
 ignore-ca-cert=false
 ignore-phase2-ca-cert=false
 
+[org/gnome/nm-applet/eap/c52e6ba3-dacd-469d-a77d-56c302d0a688]
+ignore-ca-cert=false
+ignore-phase2-ca-cert=false
+
 [org/gnome/portal/filechooser/com.google.Chrome]
-last-folder-path='/home/alex/Изображения'
+last-folder-path='/home/alex/Загрузки'
 
 [org/gnome/settings-daemon/plugins/color]
 night-light-schedule-automatic=false
@@ -237,10 +269,10 @@ sleep-inactive-ac-type='nothing'
 sleep-inactive-battery-type='nothing'
 
 [org/gnome/shell]
-app-picker-layout=[{'firmware-updater_firmware-updater.desktop': <{'position': <0>}>, 'org.gnome.Calculator.desktop': <{'position': <1>}>, 'update-manager.desktop': <{'position': <2>}>, 'org.gnome.clocks.desktop': <{'position': <3>}>, 'net.nokyan.Resources.desktop': <{'position': <4>}>, 'org.gnome.TextEditor.desktop': <{'position': <5>}>, 'desktop-security-center_desktop-security-center.desktop': <{'position': <6>}>, 'gnome-language-selector.desktop': <{'position': <7>}>, 'org.gnome.Characters.desktop': <{'position': <8>}>, 'org.gnome.Yelp.desktop': <{'position': <9>}>, 'org.gnome.Logs.desktop': <{'position': <10>}>, 'org.gnome.Sysprof.desktop': <{'position': <11>}>, 'nm-connection-editor.desktop': <{'position': <12>}>, 'org.gnome.DiskUtility.desktop': <{'position': <13>}>, 'org.gnome.baobab.desktop': <{'position': <14>}>, 'org.gnome.Loupe.desktop': <{'position': <15>}>, 'org.gnome.seahorse.Application.desktop': <{'position': <16>}>, 'org.gnome.Papers.desktop': <{'position': <17>}>, 'org.gnome.font-viewer.desktop': <{'position': <18>}>, 'org.gnome.tweaks.desktop': <{'position': <19>}>, 'firefox_firefox.desktop': <{'position': <20>}>, 'org.gnome.NetworkDisplays.desktop': <{'position': <21>}>, 'snap-store_snap-store.desktop': <{'position': <22>}>, 'com.mattjakeman.ExtensionManager.desktop': <{'position': <23>}>, 'info.desktop': <{'position': <24>}>, 'steam_steam.desktop': <{'position': <25>}>}]
+app-picker-layout=[{'firmware-updater_firmware-updater.desktop': <{'position': <0>}>, 'org.gnome.Calculator.desktop': <{'position': <1>}>, 'update-manager.desktop': <{'position': <2>}>, 'org.gnome.clocks.desktop': <{'position': <3>}>, 'net.nokyan.Resources.desktop': <{'position': <4>}>, 'org.gnome.TextEditor.desktop': <{'position': <5>}>, 'desktop-security-center_desktop-security-center.desktop': <{'position': <6>}>, 'gnome-language-selector.desktop': <{'position': <7>}>, 'org.gnome.Characters.desktop': <{'position': <8>}>, 'org.gnome.Yelp.desktop': <{'position': <9>}>, 'org.gnome.Logs.desktop': <{'position': <10>}>, 'org.gnome.Sysprof.desktop': <{'position': <11>}>, 'nm-connection-editor.desktop': <{'position': <12>}>, 'org.gnome.DiskUtility.desktop': <{'position': <13>}>, 'org.gnome.baobab.desktop': <{'position': <14>}>, 'org.gnome.Loupe.desktop': <{'position': <15>}>, 'org.gnome.seahorse.Application.desktop': <{'position': <16>}>, 'org.gnome.Papers.desktop': <{'position': <17>}>, 'org.gnome.font-viewer.desktop': <{'position': <18>}>, 'org.gnome.tweaks.desktop': <{'position': <19>}>, 'firefox_firefox.desktop': <{'position': <20>}>, 'org.gnome.NetworkDisplays.desktop': <{'position': <21>}>, 'snap-store_snap-store.desktop': <{'position': <22>}>, 'com.mattjakeman.ExtensionManager.desktop': <{'position': <23>}>, 'info.desktop': <{'position': <24>}>, 'org.gnome.Showtime.desktop': <{'position': <25>}>, 'org.gnome.Calendar.desktop': <{'position': <26>}>, 'org.gnome.Snapshot.desktop': <{'position': <27>}>, 'simple-scan.desktop': <{'position': <28>}>, 'usb-creator-gtk.desktop': <{'position': <29>}>, 'org.gnome.FileRoller.desktop': <{'position': <30>}>, 'libreoffice-startcenter.desktop': <{'position': <31>}>, 'org.remmina.Remmina.desktop': <{'position': <32>}>, 'org.gnome.Rhythmbox3.desktop': <{'position': <33>}>, 'org.gnome.Shotwell.desktop': <{'position': <34>}>, 'transmission-gtk.desktop': <{'position': <35>}>}]
 disabled-extensions=['tiling-assistant@ubuntu.com']
 enabled-extensions=['ding@rastersoft.com', 'ubuntu-dock@ubuntu.com', 'snapd-search-provider@canonical.com', 'web-search-provider@ubuntu.com']
-favorite-apps=['org.gnome.Nautilus.desktop', 'google-chrome.desktop', 'antigravity-ide.desktop', 'org.gnome.Ptyxis.desktop', 'telegram-desktop_telegram-desktop.desktop', 'steam_steam.desktop', 'org.gnome.Settings.desktop']
+favorite-apps=['org.gnome.Nautilus.desktop', 'google-chrome.desktop', 'antigravity-ide.desktop', 'org.gnome.Ptyxis.desktop', 'telegram-desktop_telegram-desktop.desktop', 'steam_steam.desktop', 'grok-bot.desktop', 'org.gnome.Settings.desktop']
 last-selected-power-profile='performance'
 welcome-dialog-last-shown-version='50.1'
 
